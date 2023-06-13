@@ -1,11 +1,8 @@
-import "./App.css";
+import React from "react";
+import Home from "./components/Restaurant/Home/Home";
 
 function App() {
-  return (
-    <div className="App">
-      <p>Working</p>
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
