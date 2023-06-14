@@ -7,14 +7,15 @@ import Widget from "./Widget";
 const Home = () => {
   return (
     <div className="home">
-      <Sidebar/>
+      <Sidebar />
       <div className="homeContainer">
-        <Navbar/>
-        <div className="widgets"></div>
-        <Widget type="customer" />
-        <Widget type="review" />
-        <Widget type="reservation" />
-        <Widget type="ranking" />
+        <Navbar />
+        <div className="widgets">
+          <Widget type="customer" />
+          <Widget type="review" />
+          <Widget type="reservation" />
+          <Widget type="ranking" />
+        </div>
       </div>
     </div>
   );
