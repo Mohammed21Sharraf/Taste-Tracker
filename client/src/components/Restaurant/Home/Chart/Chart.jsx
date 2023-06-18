@@ -23,7 +23,7 @@ const Chart = () => {
 
   return (
     <div className="chart">
-      <ResponsiveContainer width="100%" aspect={2 / 1}>
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={730}
           height={250}
