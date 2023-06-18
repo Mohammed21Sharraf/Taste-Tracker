@@ -4,7 +4,8 @@ import Navbar from "./Navbar/Navbar.jsx";
 import Sidebar from "./Sidebar/Sidebar.jsx";
 import Widget from "./Widget/Widget.jsx";
 import Featured from "./Featured/Featured";
-import Chart from "./Chart/Chart";
+import Chart from "./Chart/Chart.jsx";
+import TableHome from "./Table/Table.jsx";
 
 const Home = () => {
   return (
@@ -21,6 +22,10 @@ const Home = () => {
         <div className="charts">
           <Featured />
           <Chart />
+        </div>
+        <div className="listContainer">
+          <div className="listTitle">Latest Reviews & Reservations</div>
+          <TableHome />
         </div>
       </div>
     </div>
