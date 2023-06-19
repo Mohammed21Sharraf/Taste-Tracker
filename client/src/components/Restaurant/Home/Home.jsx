@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.scss";
-import Navbar from "./Navbar/Navbar.jsx";
-import Sidebar from "./Sidebar/Sidebar.jsx";
+import Navbar from "../layout/Navbar/Navbar.jsx";
+import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 import Widget from "./Widget/Widget.jsx";
 import Featured from "./Featured/Featured";
 import Chart from "./Chart/Chart.jsx";
