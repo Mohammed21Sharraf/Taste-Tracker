@@ -12,26 +12,56 @@ const Datatable = () => {
       name: "Tahsin Ashrafee",
       seatsBooked: 5,
       totalRes: 2,
+      status: "Processing",
+    },
+    {
+      userID: 2,
+      name: "Tahsin Ashrafee",
+      seatsBooked: 5,
+      totalRes: 2,
+      status: "Approved",
+    },
+    {
+      userID: 3,
+      name: "Tahsin Ashrafee",
+      seatsBooked: 5,
+      totalRes: 2,
+      status: "Rejected",
     },
   ];
 
   const columns = [
-    { field: "id", headerName: "User ID" },
+    { field: "id", headerName: "User ID", width: 70 },
 
     {
       field: "name",
       headerName: "User Name",
+      width: 230,
     },
     {
       field: "seatsBooked",
       headerName: "Seats Reserved",
       type: "number",
+      width: 230,
     },
 
     {
       field: "totalRes",
       headerName: "Total Reservations",
       type: "number",
+      width: 230,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 230,
+      renderCell: (params) => {
+        return (
+          <div className={`cellWithStatus ${params.row.status}`}>
+            {params.row.status}
+          </div>
+        );
+      },
     },
   ];
 
@@ -43,6 +73,7 @@ const Datatable = () => {
       seatsBooked: item.seatsBooked,
       totalRes: item.totalRes,
       name: item.name,
+      status: item.status,
     });
   });
 
@@ -52,11 +83,11 @@ const Datatable = () => {
         <div className="datatable">
           <div className="datatableTitle">Reservation List</div>
           <DataGrid
+            className="datagrid"
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="datagrid"
             autoHeight
           />
         </div>
