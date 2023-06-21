@@ -6,6 +6,7 @@ import Widget from "./Widget/Widget.jsx";
 import Featured from "./Featured/Featured";
 import Chart from "./Chart/Chart.jsx";
 import TableHome from "./Table/Table.jsx";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -26,6 +27,9 @@ const Home = () => {
         <div className="listContainer">
           <div className="listTitle">Latest Reviews & Reservations</div>
           <TableHome />
+        </div>
+        <div className="loginButton">
+          <Link to="/login">Login</Link>
         </div>
       </div>
     </div>
