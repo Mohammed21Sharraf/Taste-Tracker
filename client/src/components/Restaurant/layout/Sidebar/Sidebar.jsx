@@ -34,7 +34,7 @@ const Sidebar = () => {
             <PeopleAltRoundedIcon />
             <span>Customers Review</span>
           </li>
-          <li>
+          <li onClick={() => {navigate("/ranking ")}}>
             <StarsSharpIcon />
             <span>Ranking</span>
           </li>
