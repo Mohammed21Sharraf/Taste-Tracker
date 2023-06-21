@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 
 const Datatable = () => {
   const location = useLocation();
+  let rows = [];
+  let columns = [];
 
   const options = [
     {
@@ -30,13 +32,13 @@ const Datatable = () => {
     },
   ];
 
-  const columns = [
+  columns = [
     { field: "id", headerName: "User ID", width: 70 },
 
     {
       field: "name",
       headerName: "User Name",
-      width: 230,
+      width: 250,
     },
     {
       field: "seatsBooked",
@@ -63,9 +65,30 @@ const Datatable = () => {
         );
       },
     },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 250,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.status === "Processing" ? (
+              <div className="cellAction">
+                <div className="deleteButton">Reject</div>
+                <div className="approveButton">Approve</div>
+              </div>
+            ) : (
+              <div className="cellAction">
+                <div className={`cellWithStatus ${params.row.status}`}>
+                  Processed
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      },
+    },
   ];
-
-  const rows = [];
 
   options.forEach((item) => {
     rows.push({
