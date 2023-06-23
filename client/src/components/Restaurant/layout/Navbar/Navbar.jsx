@@ -6,42 +6,47 @@ import FullscreenExitRoundedIcon from '@mui/icons-material/FullscreenExitRounded
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import DP from '../../../../img/M1syl.jpeg';
+import {useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
-  return (
-    <div className="navbar">
-        <div className="wrapper">
-            <div className="items">
-                <div className="item">
-                    <LanguageRoundedIcon className='icon'/>
-                    English
-                </div>
-                <div className="item">
-                    <FullscreenExitRoundedIcon/>
-                    {/* Fullscreen */}
-                </div>
-                <div className="item">
-                    <DarkModeOutlinedIcon/>
-                    {/* Fullscreen */}
-                </div>
-                <div className="item">
-                    <NotificationsNoneRoundedIcon/>
-                    {/* Notifications */}
-                </div>
-                <div className="item">
-                    <LogoutRoundedIcon/>
-                    {/* Fullscreen */}
-                </div>
-                <div className="item">
-                    <img src={DP} 
-                         alt="" 
-                         className='avatar'
-                    />
+
+    const navigate = useNavigate();
+
+    return (
+        <div className="navbar">
+            <div className="wrapper">
+                <div className="items">
+                    <div className="item">
+                        <LanguageRoundedIcon className='icon'/>
+                        English
+                    </div>
+                    <div className="item">
+                        <FullscreenExitRoundedIcon/>
+                        {/* Fullscreen */}
+                    </div>
+                    <div className="item">
+                        <DarkModeOutlinedIcon/>
+                        {/* Fullscreen */}
+                    </div>
+                    <div className="item">
+                        <NotificationsNoneRoundedIcon/>
+                        {/* Notifications */}
+                    </div>
+                    <div className="item">
+                        <LogoutRoundedIcon/>
+                        {/* Fullscreen */}
+                    </div>
+                    <div className="item">
+                        <img src={DP} 
+                            alt="" 
+                            className='avatar'
+                            onClick={() => {navigate("/profile")}}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Navbar

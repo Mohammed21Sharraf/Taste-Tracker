@@ -7,7 +7,6 @@ import StarsSharpIcon from "@mui/icons-material/StarsSharp";
 import EventSeatRoundedIcon from "@mui/icons-material/EventSeatRounded";
 import SignalCellularAltRoundedIcon from "@mui/icons-material/SignalCellularAltRounded";
 import { useNavigate, Link } from "react-router-dom";
-// import {Link} from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
