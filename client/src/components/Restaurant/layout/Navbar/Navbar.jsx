@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 import "./Navbar.scss";
-import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
-import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
-import FullscreenExitRoundedIcon from '@mui/icons-material/FullscreenExitRounded';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import DP from '../../../../img/M1syl.jpeg';
+import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
+import FullscreenExitRoundedIcon from "@mui/icons-material/FullscreenExitRounded";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import DP from "../../../../img/M1syl.jpeg";
+import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
@@ -48,5 +49,3 @@ const Navbar = () => {
         </div>
     )
 }
-
-export default Navbar
