@@ -6,8 +6,8 @@ import FullscreenExitRoundedIcon from "@mui/icons-material/FullscreenExitRounded
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import DP from "../../../../img/M1syl.jpeg";
-import { Link } from "react-router-dom";
-import {useNavigate} from 'react-router-dom';
+
+import {useNavigate, Link} from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -34,8 +34,9 @@ const Navbar = () => {
                         {/* Notifications */}
                     </div>
                     <div className="item">
-                        <LogoutRoundedIcon/>
-                        {/* Fullscreen */}
+                        <Link to="/login">
+                            <LogoutRoundedIcon />
+                        </Link>
                     </div>
                     <div className="item">
                         <img src={DP} 
@@ -49,3 +50,5 @@ const Navbar = () => {
         </div>
     )
 }
+
+export default Navbar;
