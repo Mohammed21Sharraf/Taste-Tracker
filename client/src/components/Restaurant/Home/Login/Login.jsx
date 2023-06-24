@@ -44,7 +44,12 @@ const Login = () => {
             </div>
             <input type="submit" value="Login" className="btn solid" />
           </form>
-          <form action="#" className="sign-up-form" onSubmit={handleSubmit}>
+          <form
+            action="#"
+            className="sign-up-form"
+            encType="multipart/form-data"
+            onSubmit={handleSubmit}
+          >
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>

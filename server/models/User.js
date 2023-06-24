@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import validator from "validator";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -34,5 +37,26 @@ const userSchema = new mongoose.Schema({
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
+
+// Create JWT token
+userSchema.methods.getJWTToken = function () {
+  return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: "15d",
+  });
+};
+
+// Hashing password (Before document is saved hash is called)
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
+  const hashedPassword = await bcrypt.hash(this.password, 10);
+  this.password = hashedPassword;
+  next(); // Proceeds after completing the function
+});
+
+// Compare password
+userSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 export const User = mongoose.model("User", userSchema);
