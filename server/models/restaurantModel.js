@@ -88,9 +88,11 @@ const restaurantSchema = new mongoose.Schema({
       },
       time: {
         type: Date,
+        default: Date.now,
       },
       day: {
         type: Date,
+        default: Date.now,
       },
     },
   ],
