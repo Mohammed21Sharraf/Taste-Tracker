@@ -25,6 +25,45 @@ export const createRestaurant = async (req, res) => {
   }
 };
 
+// Get all reservation of a specific restaurant - Restaurant Owner
+export const getRestaurantReservations = async (req, res) => {
+  try {
+    const restaurant = await Restaurant.find({ user: req.user._id });
+    const reservation = restaurant[0].reservation;
+    res.status(200).json({
+      success: true,
+      reservation,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error,
+    });
+  }
+};
+
+export const createReservation = async (req, res) => {
+  const { seatsBooked } = req.body;
+  const reservation = {
+    user: req.user._id,
+    name: req.user.name,
+    seatsBooked: seatsBooked,
+    time: Date.now(),
+    day: Date.now(),
+  };
+
+  const restaurant = await Restaurant.find();
+
+  restaurant[0].reservation.push(reservation);
+
+  await restaurant[0].save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+    restaurant,
+  });
+};
+
 // Get Restaurant Details
 
 export const restaurantDetails = async (req,res) => {
