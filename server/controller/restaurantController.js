@@ -1,4 +1,4 @@
-import { Restaurant } from "../models/Restaurant";
+import { Restaurant } from "../models/restaurantModel";
 
 // Create a new Restaurant -- Restaurant Owner
 export const createRestaurant = async (req, res) => {

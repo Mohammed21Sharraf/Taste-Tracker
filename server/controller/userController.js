@@ -1,4 +1,4 @@
-import { User } from "../models/User.js";
+import { User } from "../models/userModel.js";
 import { sendToken } from "../utils/sendToken.js";
 
 // Register User
