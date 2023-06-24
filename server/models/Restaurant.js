@@ -29,7 +29,12 @@ const restaurantSchema = new mongoose.Schema({
     required: [true, "Please enter restaurant category"],
   },
   capacity: {
-    type: Number
+    type: Number,
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
   },
   ratings: {
     type: Number,

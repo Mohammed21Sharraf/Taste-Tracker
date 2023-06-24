@@ -1,21 +1,26 @@
-import { Restaurant } from "../models/Restaurant";
+import { Restaurant } from "../models/Restaurant.js";
 
 // Create a new Restaurant -- Restaurant Owner
 export const createRestaurant = async (req, res) => {
   try {
-    const { resName, description, aov, logo, category, seats } = req.body;
+    const { name, description, averageOrderValue, category } = req.body;
 
-    const newRes = await Restaurant.create({
-      resName,
+    const restaurant = await Restaurant.create({
+      name,
       description,
-      aov,
-      logo,
+      averageOrderValue,
       category,
-      seats,
+      user: req.user._id,
     });
 
-    res.status(200).json("New Restaurant created!", newRes);
+    res.status(202).json({
+      success: true,
+      restaurant,
+    });
   } catch (error) {
-    res.staus(500).json(error);
+    res.status(500).json({
+      success: false,
+      error,
+    });
   }
 };
