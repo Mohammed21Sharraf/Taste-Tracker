@@ -5,7 +5,6 @@ import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import StarsSharpIcon from "@mui/icons-material/StarsSharp";
 import EventSeatRoundedIcon from "@mui/icons-material/EventSeatRounded";
-import SignalCellularAltRoundedIcon from "@mui/icons-material/SignalCellularAltRounded";
 import { useNavigate, Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -40,10 +39,6 @@ const Sidebar = () => {
           <li onClick={reservation}>
             <EventSeatRoundedIcon />
             <span>Reservations</span>
-          </li>
-          <li>
-            <SignalCellularAltRoundedIcon />
-            <span>Charts</span>
           </li>
         </ul>
       </div>
