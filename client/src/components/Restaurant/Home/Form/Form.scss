@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.form-title {
+  font-size: 2rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+label {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.range-input-container {
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"] {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="number"] {
+  width: 70px;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-input {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-input:hover {
+  background-color: #555;
+}
+
+.file-input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.file-name {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.submit-btn {
+  padding: 0.7rem 1.5rem;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem; /* Added margin top */
+}
+
+.submit-btn:hover {
+  background-color: #555;
+}
