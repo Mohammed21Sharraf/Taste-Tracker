@@ -1,7 +1,7 @@
 import express from "express";
 import {
   createReservation,
-  createRestaurant,
+  createRestaurant, restaurantDetails, restaurantReviews, restaurantUpdate,
   getRestaurantReservations,
 } from "../controller/restaurantController.js";
 import { isAuthenticatedUser } from "../middleware/auth.js";
@@ -14,5 +14,8 @@ router
   .get(isAuthenticatedUser, getRestaurantReservations);
 
 router.route("/reserver").post(isAuthenticatedUser, createReservation);
+router.route("/restaurant/details").get(isAuthenticatedUser,restaurantDetails);
+router.route("/restaurant/reviews").get(isAuthenticatedUser, restaurantReviews);
+router.route("/restaurant/update/:id").put(isAuthenticatedUser, restaurantUpdate);
 
 export default router;
