@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import logo from "../../../../img/newlogotxt.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [userType, setUserType] = useState("restaurantOwner");
@@ -42,7 +43,9 @@ const Login = () => {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <input type="submit" value="Login" className="btn solid" />
+            <Link to="/restaurant/dashboard">
+              <input type="submit" value="Login" className="btn solid" />
+            </Link>
           </form>
           <form
             action="#"
@@ -73,7 +76,9 @@ const Login = () => {
                 <option value="user">User</option>
               </select>
             </div>
-            <input type="submit" className="btn" value="Sign up" />
+            <Link to="form">
+              <input type="submit" className="btn" value="Sign up" />
+            </Link>
           </form>
         </div>
       </div>

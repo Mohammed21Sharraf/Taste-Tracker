@@ -5,13 +5,13 @@ import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import StarsSharpIcon from "@mui/icons-material/StarsSharp";
 import EventSeatRoundedIcon from "@mui/icons-material/EventSeatRounded";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
   function reservation() {
-    navigate("/reservation");
+    navigate("/restaurant/reservation");
   }
 
   return (
@@ -22,17 +22,27 @@ const Sidebar = () => {
       </div>
       <div className="center">
         <ul>
-          <li onClick={() => {navigate("/")}}>
+          <li
+            onClick={() => {
+              navigate("/restaurant/dashboard");
+            }}
+          >
             <GridViewRoundedIcon />
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <span>Dashboard</span>
-            </Link>
+            <span>Dashboard</span>
           </li>
-          <li onClick={() => {navigate("/customer")}}>
+          <li
+            onClick={() => {
+              navigate("/restaurant/customer");
+            }}
+          >
             <PeopleAltRoundedIcon />
             <span>Customers Review</span>
           </li>
-          <li onClick={() => {navigate("/ranking ")}}>
+          <li
+            onClick={() => {
+              navigate("/restaurant/ranking ");
+            }}
+          >
             <StarsSharpIcon />
             <span>Ranking</span>
           </li>

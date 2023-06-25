@@ -1,10 +1,8 @@
 import React, { Fragment } from "react";
 import "./Datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { useLocation } from "react-router-dom";
 
 const Datatable = () => {
-  const location = useLocation();
   let rows = [];
   let columns = [];
 
@@ -102,21 +100,17 @@ const Datatable = () => {
 
   return (
     <Fragment>
-      {location.pathname === "/reservation" ? (
-        <div className="datatable">
-          <div className="datatableTitle">Reservation List</div>
-          <DataGrid
-            className="datagrid"
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            autoHeight
-          />
-        </div>
-      ) : (
-        <div>Not okay</div>
-      )}
+      <div className="datatable">
+        <div className="datatableTitle">Reservation List</div>
+        <DataGrid
+          className="datagrid"
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          disableSelectionOnClick
+          autoHeight
+        />
+      </div>
     </Fragment>
   );
 };

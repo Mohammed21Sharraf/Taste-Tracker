@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Form.scss";
+import { Link } from "react-router-dom";
 
 const Form = () => {
   const [restaurantName, setRestaurantName] = useState("");
@@ -50,7 +51,9 @@ const Form = () => {
             />
           </div>
           <div className="form-field">
-            <label htmlFor="restaurantDescription">Restaurant Description</label>
+            <label htmlFor="restaurantDescription">
+              Restaurant Description
+            </label>
             <textarea
               id="restaurantDescription"
               value={restaurantDescription}
@@ -120,7 +123,9 @@ const Form = () => {
               required
             />
           </div>
-          <input type="submit" value="Submit" className="submit-btn" />
+          <Link to="/restaurant/dashboard">
+            <input type="submit" value="Submit" className="submit-btn" />
+          </Link>
         </form>
       </div>
     </div>
