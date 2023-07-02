@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import Home from "./components/Restaurant/Home/Home";
 import Reservation from "./components/Restaurant/Reservation/Reservation";
 import Form from "./components/Restaurant/Home/Form/Form";
@@ -7,8 +7,17 @@ import Customer from "./components/Restaurant/Customer/Customer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Ranking from "./components/Restaurant/Ranking/Ranking";
 import Profile from "../src/components/Restaurant/Profile/Profile";
+import store from "./store";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "./features/user/userSlice";
 
 function App() {
+  // const { user } = useSelector((store) => store.user);
+
+  // useEffect(() => {
+  //   // store.dispatch(loadUser());
+  // });
+
   return (
     <Suspense>
       <Router>

@@ -5,18 +5,14 @@ import { sendToken } from "../utils/sendToken.js";
 export const register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
-
+    console.log(name, email, password, role);
     const user = await User.create({
       name,
       email,
       password,
       role,
-      avatar: {
-        public_id: "tempurl",
-        url: "tempurl",
-      },
     });
-
+    console.log(user);
     sendToken(res, user, "Registered User Successfully", 201);
   } catch (error) {
     res.status(500).json({
@@ -28,16 +24,16 @@ export const register = async (req, res) => {
 
 // Login User
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { loginEmail, loginPassword } = req.body;
 
-  if (!email || !password) {
+  if (!loginEmail || !loginPassword) {
     res.status(400).json({
       success: false,
       message: "Please Enter email or password",
     });
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email: loginEmail }).select("+password");
 
   if (!user) {
     res.status(500).json({
@@ -46,7 +42,7 @@ export const login = async (req, res) => {
     });
   }
 
-  const isMatch = await user.comparePassword(password);
+  const isMatch = await user.comparePassword(loginPassword);
 
   if (!isMatch) {
     res.status(500).json({
@@ -68,5 +64,15 @@ export const logout = async (req, res) => {
   res.status(200).json({
     success: true,
     message: "Logged out",
+  });
+};
+
+// Get User Details
+export const getUserDetails = async (req, res) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  res.status(200).json({
+    success: true,
+    user,
   });
 };

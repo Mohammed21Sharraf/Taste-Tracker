@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Form.scss";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createRestaurant } from "../../../../features/restaurant/restaurantSlice";
 
 const Form = () => {
   const [restaurantName, setRestaurantName] = useState("");
@@ -10,18 +11,8 @@ const Form = () => {
   const [category, setCategory] = useState("");
   const [seatCapacity, setSeatCapacity] = useState("");
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    const formData = {
-      restaurantName,
-      restaurantDescription,
-      averageOrderValue,
-      logo,
-      category,
-      seatCapacity,
-    };
-    console.log(formData);
-  };
+  const { restaurant } = useSelector((store) => store.restaurant);
+  const dispatch = useDispatch();
 
   const handleSliderChange = (e) => {
     setAverageOrderValue(e.target.value);
@@ -30,6 +21,18 @@ const Form = () => {
   const handleNumericInputChange = (e) => {
     const numericValue = parseFloat(e.target.value);
     setAverageOrderValue(numericValue || "");
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const formData = {
+      restaurantName,
+      restaurantDescription,
+      averageOrderValue,
+      category,
+      seatCapacity,
+    };
+    dispatch(createRestaurant(formData));
   };
 
   return (
@@ -107,7 +110,6 @@ const Form = () => {
                   type="file"
                   id="logo"
                   onChange={(e) => setLogo(e.target.files[0])}
-                  required
                 />
               </label>
               <span className="file-name">{logo && logo.name}</span>
@@ -123,9 +125,7 @@ const Form = () => {
               required
             />
           </div>
-          <Link to="/restaurant/dashboard">
-            <input type="submit" value="Submit" className="submit-btn" />
-          </Link>
+          <input type="submit" value="Submit" className="submit-btn" />
         </form>
       </div>
     </div>

@@ -24,6 +24,14 @@ const restaurantSchema = new mongoose.Schema({
       },
     },
   ],
+  logo: {
+    public_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+  },
   category: {
     type: String,
     required: [true, "Please enter restaurant category"],
@@ -64,8 +72,8 @@ const restaurantSchema = new mongoose.Schema({
         required: true,
       },
       img: {
-        type: String
-      }
+        type: String,
+      },
     },
   ],
 

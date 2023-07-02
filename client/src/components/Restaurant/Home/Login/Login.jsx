@@ -1,10 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.scss";
 import logo from "../../../../img/newlogotxt.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { register, login } from "../../../../features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const [userType, setUserType] = useState("restaurantOwner");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((store) => store.user);
+
+  const [formData, setFormData] = useState({
+    loginEmail: "",
+    loginPassword: "",
+  });
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "restaurantOwner",
+  });
+
+  const loginDataChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const registerDataChange = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  };
+
+  const { loginEmail, loginPassword } = formData;
+  const { name, email, password, role } = userInfo;
+
+  const registerSubmit = (e) => {
+    e.preventDefault();
+    const userData = { name, email, password, role };
+    dispatch(register(userData));
+  };
+
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    const loginData = { loginEmail, loginPassword };
+    dispatch(login(loginData));
+  };
+
+  // useEffect(() => {
+  //   if (isAuthenticated && role === "restaurantOwner") {
+  //     navigate("/form");
+  //   }
+  // });
 
   const handleSignUpClick = () => {
     const container = document.querySelector(".container");
@@ -16,69 +60,79 @@ const Login = () => {
     container.classList.remove("sign-up-mode");
   };
 
-  const handleUserTypeChange = (event) => {
-    setUserType(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (userType === "restaurantOwner") {
-      console.log("Restaurant Owner login or signup");
-    } else if (userType === "user") {
-      console.log("User login or signup");
-    }
-  };
-
   return (
     <div className="container">
       <div className="forms-container">
         <div className="signin-signup">
-          <form action="#" className="sign-in-form" onSubmit={handleSubmit}>
+          <form className="sign-in-form" onSubmit={loginSubmit}>
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input
+                type="text"
+                name="loginEmail"
+                placeholder="Email"
+                required
+                value={loginEmail}
+                onChange={loginDataChange}
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                name="loginPassword"
+                placeholder="Password"
+                required
+                value={loginPassword}
+                onChange={loginDataChange}
+              />
             </div>
-            <Link to="/restaurant/dashboard">
-              <input type="submit" value="Login" className="btn solid" />
-            </Link>
+            <input type="submit" value="Login" className="btn solid" />
           </form>
-          <form
-            action="#"
-            className="sign-up-form"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-          >
+
+          <form action="#" className="sign-up-form" onSubmit={registerSubmit}>
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input
+                type="text"
+                placeholder="Username"
+                required
+                name="name"
+                value={name}
+                onChange={registerDataChange}
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input type="tel" placeholder="Phone Number" />
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                name="email"
+                value={email}
+                onChange={registerDataChange}
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                name="password"
+                value={password}
+                onChange={registerDataChange}
+              />
             </div>
             <div className="user-type-field">
-              <select value={userType} onChange={handleUserTypeChange}>
+              <select name="role" value={role} onChange={registerDataChange}>
                 <option value="restaurantOwner">Restaurant Owner</option>
                 <option value="user">User</option>
               </select>
             </div>
-            <Link to="form">
-              <input type="submit" className="btn" value="Sign up" />
-            </Link>
+            <input type="submit" className="btn" value="Sign Up" />
           </form>
         </div>
       </div>
