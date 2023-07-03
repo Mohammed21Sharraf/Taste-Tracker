@@ -3,15 +3,20 @@ import { Restaurant } from "../models/restaurantModel.js";
 // Create a new Restaurant -- Restaurant Owner
 export const createRestaurant = async (req, res) => {
   try {
-    const { name, description, averageOrderValue, category, capacity } =
-      req.body;
-    console.log(name, description, averageOrderValue, category);
-    const restaurant = await Restaurant.create({
-      name,
-      description,
+    const {
+      restaurantName,
+      restaurantDescription,
       averageOrderValue,
       category,
-      capacity,
+      seatCapacity,
+    } = req.body;
+
+    const restaurant = await Restaurant.create({
+      name: restaurantName,
+      description: restaurantDescription,
+      averageOrderValue: averageOrderValue,
+      category: category,
+      capacity: seatCapacity,
       user: req.user._id,
     });
 
@@ -44,6 +49,7 @@ export const getRestaurantReservations = async (req, res) => {
   }
 };
 
+// Create Reservation - User
 export const createReservation = async (req, res) => {
   const { seatsBooked } = req.body;
   const reservation = {

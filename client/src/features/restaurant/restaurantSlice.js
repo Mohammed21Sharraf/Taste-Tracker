@@ -4,18 +4,18 @@ import axios from "axios";
 // Create Restaurant - Restaurant Owner
 export const createRestaurant = createAsyncThunk(
   "restaurant/createRestaurant",
-  async (restaurantData) => {
+  async (restaurantData, { rejectWithValue }) => {
     try {
       console.log(restaurantData);
-      const config = { headers: { "Content-Type": "application/json" } };
+
       const { data } = await axios.post(
         "http://localhost:4000/api/v1/restaurant/new",
         restaurantData,
-        config
+        { withCredentials: true }
       );
       await data.restaurant;
     } catch (error) {
-      console.log(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );

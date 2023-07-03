@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import "./Form.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { createRestaurant } from "../../../../features/restaurant/restaurantSlice";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantDescription, setRestaurantDescription] = useState("");
-  const [averageOrderValue, setAverageOrderValue] = useState("");
+  const [averageOrderValue, setAverageOrderValue] = useState(500);
   const [logo, setLogo] = useState("");
   const [category, setCategory] = useState("");
-  const [seatCapacity, setSeatCapacity] = useState("");
+  const [seatCapacity, setSeatCapacity] = useState(30);
 
-  const { restaurant } = useSelector((store) => store.restaurant);
+  const { loading } = useSelector((store) => store.restaurant);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSliderChange = (e) => {
     setAverageOrderValue(e.target.value);
@@ -34,6 +36,12 @@ const Form = () => {
     };
     dispatch(createRestaurant(formData));
   };
+
+  useEffect(() => {
+    if (loading === false) {
+      navigate("/restaurant/dashboard");
+    }
+  });
 
   return (
     <div className="page-container">
