@@ -1,0 +1,21 @@
+.infoForm{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+    
+    button {
+        width: 150px;
+        padding: 10px;
+        border: none;
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        }
+}
+

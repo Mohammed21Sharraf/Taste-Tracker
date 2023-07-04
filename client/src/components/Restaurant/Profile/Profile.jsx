@@ -13,6 +13,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from 'axios';
+import UpdateProfile   from './UpdateProfile';
 import {baseURL} from '../../../api.js';
 
 
@@ -21,18 +22,10 @@ function Profile() {
   const [file, setFile] = useState("");
   const [datas, setData] = useState([]);
   const [updateUI, setUpdateUI] = useState(false);
-  // const rows = [
-  //   {
-  //     username: "Tashsin",
-  //     restaurant: "Tashsin's Kitchen",
-  //     desc: "Best Restaurant",
-  //     capacity: 5,
-  //     aov: 2,
-  //     category: "Indian",
-  //   },
-  // ]
+  const [modal, setModal] = useState(false);
+
   useEffect(() => {
-    axios.get(`${baseURL}/api/v1/restaurant/details`)
+    axios.get(`${baseURL}/api/v1/restaurant/details`,{withCredentials:true})
     .then((res)=> {
       console.log(res.data);
       setData(res.data);
@@ -73,7 +66,7 @@ function Profile() {
               <TableBody>
                 {datas.map((data) => (
                   <TableRow key={data.id} setUpdateUI={setUpdateUI}>
-                    {/* <TableCell className="tableCell">{data.user.name}</TableCell> */}
+                    <TableCell className="tableCell">{data.username}</TableCell>
                     <TableCell className="tableCell">{data.name}</TableCell>
                     <TableCell className="tableCell">{data.description}</TableCell>
                     <TableCell className="tableCell">{data.capacity}</TableCell>
@@ -83,7 +76,11 @@ function Profile() {
                 ))}
               </TableBody>
             </Table>
-            <button>Update Profile</button>
+            <button onClick={()=> setModal(true)}>Update Profile</button>
+            <UpdateProfile
+              modal={modal}
+              setModal={setModal}
+            />
           </TableContainer>
 
         </div>
