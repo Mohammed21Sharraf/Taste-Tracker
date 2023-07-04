@@ -44,11 +44,11 @@ const Login = () => {
     dispatch(login(loginData));
   };
 
-  // useEffect(() => {
-  //   if (isAuthenticated && role === "restaurantOwner") {
-  //     navigate("/form");
-  //   }
-  // });
+  useEffect(() => {
+    if (isAuthenticated && role === "restaurantOwner") {
+      navigate("/form");
+    }
+  });
 
   const handleSignUpClick = () => {
     const container = document.querySelector(".container");

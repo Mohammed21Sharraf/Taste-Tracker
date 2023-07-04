@@ -6,7 +6,7 @@ export const isAuthenticatedUser = async (req, res, next) => {
   console.log(req.cookies);
   if (!token) {
     return res.status(401).json({
-      success: true,
+      success: false,
       message: "Please Login to access this route",
     });
   }
