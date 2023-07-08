@@ -30,6 +30,7 @@ function App() {
           <Route exact path="/restaurant/ranking" Component={Ranking} />
           <Route exact path="/restaurant/profile" Component={Profile} />
           <Route exact path="/homepage" Component={Homepage} />
+
         </Routes>
       </Router>
     </Suspense>
