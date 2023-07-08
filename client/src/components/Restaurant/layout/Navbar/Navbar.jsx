@@ -22,7 +22,6 @@ const Navbar = () => {
           </div>
           <div className="item">
             <FullscreenExitRoundedIcon />
-            {/* Fullscreen */}
           </div>
           <div className="item">
             <DarkModeOutlinedIcon />

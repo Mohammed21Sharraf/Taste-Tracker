@@ -1,0 +1,39 @@
+.Navbar{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,.25);
+    width: auto;
+    height: 80px;
+    border-radius: 15px;
+
+    .items{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: right;
+        justify-content: right;
+        text-decoration: none;
+        color: black;
+
+        .item{
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            position: relative;
+            text-decoration: none;
+            color: black;
+            .home{
+                text-decoration: none;
+            color: black;
+            }
+        }
+        
+    }
+}
+.logo-item{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}

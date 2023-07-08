@@ -9,6 +9,7 @@ import Ranking from "./components/Restaurant/Ranking/Ranking";
 import Profile from "../src/components/Restaurant/Profile/Profile";
 import store from "./store";
 import { loadUser } from "./features/user/userSlice";
+import Homepage from "./components/EndUser/Homepage/Homepage";
 
 function App() {
   React.useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/restaurant/customer" Component={Customer} />
           <Route exact path="/restaurant/ranking" Component={Ranking} />
           <Route exact path="/restaurant/profile" Component={Profile} />
+          <Route exact path="/homepage" Component={Homepage} />
         </Routes>
       </Router>
     </Suspense>
