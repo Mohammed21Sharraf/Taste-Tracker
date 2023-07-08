@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+// import * as api from "../../api"; 
 
 // Create Restaurant - Restaurant Owner
 export const createRestaurant = createAsyncThunk(
@@ -18,11 +19,26 @@ export const createRestaurant = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   }
-);
+)
+
+// Update Restaurant profile 
+// export const updateRestaurantProfile = createAsyncThunk(
+//   "restaurant/updateProfile",
+//   async ({id, updatedData, navigate}, {rejectWithValue}) => {
+//     try {
+//       const response = await api.updateProfile(updatedData, id);
+//       navigate("/restaurant/profile");
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// )
 
 const initialState = {
   loading: true,
   restaurant: {},
+  userRestaurant: [],
 };
 
 const restaurantSlice = createSlice({
@@ -43,8 +59,28 @@ const restaurantSlice = createSlice({
       })
       .addCase(createRestaurant.rejected, (state) => {
         state.restaurant = null;
-      });
-  },
+      })
+      // Update Restaurant Profile 
+    //   .addCase(updateRestaurantProfile.pending, (state) => {
+    //     state.loading = true;
+    //   })
+    //   .addCase(updateRestaurantProfile.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     console.log("action",action);
+    //     const {
+    //       arg: {id},
+    //     } = action.meta;
+    //     if (id) {
+    //       state.userRestaurant = state.userRestaurant.map((item) => {
+    //         item._id === id ? action.payload : item
+    //       });
+    //     };
+    //   })
+    //   .addCase(updateRestaurantProfile.rejected, (state, action) => {
+    //     state.loading = false;
+    //     state.error = action.payload.message;
+    //   })
+    }
 });
 
 export default restaurantSlice.reducer;

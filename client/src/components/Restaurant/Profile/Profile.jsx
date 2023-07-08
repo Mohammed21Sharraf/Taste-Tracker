@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../layout/Navbar/Navbar';
 import Sidebar from '../layout/Sidebar/Sidebar';
 import './Profile.scss';
 import DP from "../../../img/M1syl.jpeg";
 import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
+import "../Home/Table/Table.scss";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import axios from 'axios';
+import UpdateProfile   from './UpdateProfile';
+import {baseURL} from '../../../api.js';
 
-const Profile = () => {
+
+
+function Profile() {
   const [file, setFile] = useState("");
+  const [datas, setData] = useState([]);
+  const [updateUI, setUpdateUI] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    axios.get(`${baseURL}/api/v1/restaurant/details`,{withCredentials:true})
+    .then((res)=> {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, [updateUI]);
+
 
   return (
     <div className="profile">
@@ -19,50 +44,45 @@ const Profile = () => {
         <div className="bottom">
           <div className="left">
             <img src={file ? URL.createObjectURL(file) : DP} alt="" />
+            <div>
+              <label htmlFor='file'>
+                Image: <DriveFolderUploadOutlinedIcon className='icon' />
+              </label>
+              <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{ display: "none" }} />
+            </div>
           </div>
-          <div className="right">
-            <form>
-              <div className="formInput">
-                <label htmlFor='file'>
-                  Image: <DriveFolderUploadOutlinedIcon className='icon' />
-                </label>
-                <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{ display: "none" }} />
-              </div>
-              <div className="formInput">
-                <label>Username</label>
-                <input type="text" placeholder='Tahsin' />
-              </div>
-              <div className="formInput">
-                <label>Email</label>
-                <input type="text" placeholder='Tahsin@gmail.com' />
-              </div>
-              <div className="formInput">
-                <label>Password</label>
-                <input type="text" />
-              </div>
-              <div className="formInput">
-                <label>Restaurant</label>
-                <input type="text" placeholder="Tahsin's Kitchen" />
-              </div>
-              <div className="formInput">
-                <label>Average Order Value</label>
-                <input type="text" placeholder='1500 taka' />
-              </div>
-              <div className="formInput">
-                <label>Category</label>
-                <input type="text" placeholder='Italian, Chinese, etc.' />
-              </div>
-              <div className="formInput">
-                <label>Description</label>
-                <input type="text" placeholder='Restaurant description' />
-              </div>
-              <div className="formInput">
-                <label>Seat Capacity</label>
-                <input type="text" placeholder='Number of seats available' />
-              </div>
-              <button>Update Profile</button>
-            </form>
-          </div>
+          <TableContainer component={Paper} className="table">
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className="tableCell">Username</TableCell>
+                  <TableCell className="tableCell">Your Restaurant</TableCell>
+                  <TableCell className="tableCell">Description</TableCell>
+                  <TableCell className="tableCell">Seat Capacity</TableCell>
+                  <TableCell className="tableCell">Average Order Value</TableCell>
+                  <TableCell className="tableCell">Category</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {datas.map((data) => (
+                  <TableRow key={data.id} setUpdateUI={setUpdateUI}>
+                    <TableCell className="tableCell">{data.username}</TableCell>
+                    <TableCell className="tableCell">{data.name}</TableCell>
+                    <TableCell className="tableCell">{data.description}</TableCell>
+                    <TableCell className="tableCell">{data.capacity}</TableCell>
+                    <TableCell className="tableCell">{data.averageOrderValue}</TableCell>
+                    <TableCell className="tableCell">{data.category}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <button onClick={()=> setModal(true)}>Update Profile</button>
+            <UpdateProfile
+              modal={modal}
+              setModal={setModal}
+            />
+          </TableContainer>
+
         </div>
       </div>
     </div>
