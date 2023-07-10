@@ -48,7 +48,7 @@ const Login = () => {
     if (isAuthenticated && role === "restaurantOwner") {
       navigate("/form");
     }
-  });
+  }, [isAuthenticated, role, navigate]);
 
   const handleSignUpClick = () => {
     const container = document.querySelector(".container");

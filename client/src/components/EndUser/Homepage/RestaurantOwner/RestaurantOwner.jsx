@@ -32,7 +32,7 @@ const RestaurantOwner = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [controls]);
+  }, [ref,controls]);
 
   return (
     <div>
@@ -79,8 +79,8 @@ const RestaurantOwner = () => {
         transition={{ duration: 1.2, delay: 1.2}}
         className="get-featured"
       >
-        {isSectionVisible && <a href='#'><button className="signup-button">Sign Up</button>
-        </a>}
+        {isSectionVisible &&<button className="signup-button">Sign Up</button>
+        }
       </motion.div>
     </div>
   );
