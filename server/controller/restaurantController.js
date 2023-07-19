@@ -11,6 +11,8 @@ export const createRestaurant = async (req, res) => {
       seatCapacity,
     } = req.body;
 
+    console.log(req.user.name);
+
     const restaurant = await Restaurant.create({
       name: restaurantName,
       description: restaurantDescription,
@@ -18,6 +20,7 @@ export const createRestaurant = async (req, res) => {
       category: category,
       capacity: seatCapacity,
       user: req.user._id,
+      username: req.user.name
     });
 
     res.status(202).json({

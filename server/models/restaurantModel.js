@@ -44,6 +44,10 @@ const restaurantSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+  },
   ratings: {
     type: Number,
     default: 0,
