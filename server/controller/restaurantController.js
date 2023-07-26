@@ -1,4 +1,5 @@
 import { Restaurant } from "../models/restaurantModel.js";
+import ApiFeatures from "../utils/apifeatures.js";
 
 // Create a new Restaurant -- Restaurant Owner
 export const createRestaurant = async (req, res) => {
@@ -73,7 +74,6 @@ export const createReservation = async (req, res) => {
 };
 
 // Get Restaurant Details
-
 export const restaurantDetails = async (req, res) => {
   const id = req.user._id;
 
@@ -86,7 +86,6 @@ export const restaurantDetails = async (req, res) => {
 };
 
 // Get Restaurant Review
-
 export const restaurantReviews = async (req, res) => {
   const id = req.user._id;
 
@@ -99,7 +98,6 @@ export const restaurantReviews = async (req, res) => {
 };
 
 // Update Restaurant profile
-
 export const restaurantUpdate = async (req, res) => {
   const id = req.user._id;
   try {
@@ -114,5 +112,45 @@ export const restaurantUpdate = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json(error);
+  }
+};
+
+// Get all restaurants
+export const getAllRestaurants = async (req, res) => {
+  try {
+    const resultPerPage = 2;
+    const apiFeatures = new ApiFeatures(Restaurant.find(), req.query)
+      .search()
+      .filter()
+      .pagination(resultPerPage);
+
+    console.log(apiFeatures);
+    const restaurants = await apiFeatures.query;
+
+    res.status(202).json({
+      success: true,
+      restaurants,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      error,
+    });
+  }
+};
+
+// Get restaurant details
+export const getRestaurantDetails = async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findById(req.params.id);
+    res.status(200).json({
+      success: true,
+      restaurant,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: error,
+    });
   }
 };
