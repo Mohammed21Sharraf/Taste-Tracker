@@ -10,6 +10,7 @@ import Profile from "../src/components/Restaurant/Profile/Profile";
 import store from "./store";
 import { loadUser } from "./features/user/userSlice";
 import Homepage from "./components/EndUser/Homepage/Homepage";
+import Userpage from "./components/EndUser/Userpage/Userpage";
 
 function App() {
   React.useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/restaurant/ranking" Component={Ranking} />
           <Route exact path="/restaurant/profile" Component={Profile} />
           <Route exact path="/homepage" Component={Homepage} />
+          <Route exact path="/userpage" Component={Userpage} />
         </Routes>
       </Router>
     </Suspense>
