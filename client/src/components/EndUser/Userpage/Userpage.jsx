@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import "./Userpage.scss";
+import Navbar from "../Userpage/Navbar/Navbar.jsx"
 import RestaurantCard from "./RestaurantCard/RestaurantCard";
 
 const Userpage = () => {
   return (
     <Fragment>
-      <div className="navbar">Navbar</div>
+      <Navbar />
       <div className="header">Header</div>
       <div className="container-fluid d-flex flex-column align-items-center">
         <h3>Top Restaurants</h3>
