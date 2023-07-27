@@ -77,3 +77,4 @@ export const getUserDetails = async (req, res) => {
     user,
   });
 };
+
