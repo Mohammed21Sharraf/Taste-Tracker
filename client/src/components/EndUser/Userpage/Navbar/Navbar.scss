@@ -8,7 +8,7 @@ $transparent: transparent;
   left: 20px;
   right: 20px;
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
   justify-content: space-between;
   padding: 0 30px;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
@@ -20,22 +20,18 @@ $transparent: transparent;
   transition: background-color 0.3s;
 
   .logo-item {
-    /* Remove flex: 1 to take the necessary space for the logo */
-    /* Removed: flex: 1; */
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align the logo to the left */
+    justify-content: flex-start;
   }
 
   .search-bar-container {
-    /* Center the search bar horizontally */
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .search-bar {
-    /* Remove flex: 1, and set width to the desired size */
     width: 200px;
     height: 30px;
     border-radius: 30px;
@@ -52,8 +48,8 @@ $transparent: transparent;
       padding-bottom: 25px;
       border-radius: 30px;
       font-size: 14px;
-      color: $maroon; /* Set the text color inside the search bar to maroon */
-      text-align: center; /* Center the text inside the search bar */
+      color: $maroon;
+      text-align: center;
     }
   }
 
@@ -78,12 +74,29 @@ $transparent: transparent;
   }
 
   &.opaque {
-    background-color: $white;
-    color: $maroon;
+    background-color: $maroon;
+    color: $white;
 
-    .item a {
-      color: $maroon;
+    .logo,
+    .search-bar-container .search-bar input {
+      color: $white;
     }
+
+    .items .item {
+      a {
+        color: $white;
+      }
+    }
+  }
+
+  .white-text {
+    a {
+      color: $white;
+    }
+  }
+
+  .maroon-text {
+    color: $maroon;
   }
 
   .responsive-menu {
@@ -97,15 +110,15 @@ $transparent: transparent;
 
       .logo-item {
         order: 2;
-        justify-content: center; /* Changed to center the logo-item */
+        justify-content: center;
         margin-left: auto;
         margin-bottom: 10px;
       }
 
       .search-bar-container {
         order: 1;
-        flex: 1; /* Fill the remaining space */
-        justify-content: center; /* Center the search bar */
+        flex: 1;
+        justify-content: center;
         margin-bottom: 10px;
       }
 
