@@ -53,7 +53,7 @@ body {
       padding-bottom: 25px;
       border-radius: 30px;
       font-size: 14px;
-      color: $maroon;
+      color: black;
       text-align: center;
     }
   }
@@ -83,8 +83,12 @@ body {
     color: $white;
 
     .logo,
-    .search-bar-container .search-bar input {
+    .search-bar-container .search-bar {
       color: $white;
+    }
+
+    input {
+      color: black;
     }
 
     .items .item {
@@ -102,6 +106,10 @@ body {
 
   .maroon-text {
     color: $maroon;
+  }
+
+  .black-text {
+    color: black;
   }
 
   .responsive-menu {

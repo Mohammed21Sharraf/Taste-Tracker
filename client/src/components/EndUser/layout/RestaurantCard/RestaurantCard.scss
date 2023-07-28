@@ -1,95 +1,90 @@
 body {
-    background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+  background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+}
+
+.card {
+  width: 17rem;
+  margin: 2rem 0;
+}
+
+.card:hover {
+  box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+}
+
+.card-body {
+  padding: 3rem 0 !important;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  padding: 0.4rem 1.9rem;
+}
+
+.container-fluid .row {
+  padding-bottom: 2rem;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.card-img-top {
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+
+.card-img-top:hover {
+  transform: scale(1.8);
+}
+
+.heart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.heart-icon {
+  color: #4c0f1e;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  transform-origin: center;
+  animation: pumpingHeart 0.5s infinite alternate !important;
+
+  &:hover {
+    color: #a7132b;
   }
-  
-  .card {
-    width: 17rem;
-    margin: 2rem 0;
-  }
-  
-  .card:hover {
-    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
-  }
-  
-  .card-body {
-    padding: 3rem 0 !important;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-    padding: 0.4rem 1.9rem;
-  }
-  
-  .container-fluid .row {
-    padding-bottom: 2rem;
-  }
-  
-  .overflow {
-    overflow: hidden;
-  }
-  
-  .card-img-top {
+}
+
+@keyframes pumpingHeart {
+  0% {
     transform: scale(1);
-    transition: transform 0.5s ease;
   }
-  
-  .card-img-top:hover {
-    transform: scale(1.8);
+  100% {
+    transform: scale(1.2);
   }
-  
-  .heart-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  .heart-icon {
-    color: #4c0f1e;
-    font-size: 1.5rem;
-    margin-left: 0.5rem;
-    transform-origin: center;
-    animation: pumpingHeart 0.5s infinite alternate !important;
+}
 
-    &:hover {
-      color: #A7132B;
-    }
+@keyframes pumpingHeart {
+  0% {
+    transform: scale(1);
   }
-  
-  @keyframes pumpingHeart {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.2);
-    }
+  100% {
+    transform: scale(1.2);
   }
-  
-  
-  @keyframes pumpingHeart {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.2);
-    }
-  }
-  
-  
-  
-  
+}
 
-  .explore-button {
-    background-color: #4c0f1e;
+.explore-button {
+  background-color: #4c0f1e;
+  color: #ffff;
+  border: none;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 0.2rem; /* border-radius */
+
+  &:hover {
+    background-color: #a7132b;
     color: #ffff;
-    border: none;
-    padding: 0.3rem 1rem;
-    font-size: 1rem;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 0.2rem; /* border-radius */
-
-    &:hover {
-      background-color: #A7132B;
-      color: #ffff;
-    }
   }
+}

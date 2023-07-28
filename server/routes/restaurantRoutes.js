@@ -8,6 +8,7 @@ import {
   getRestaurantReservations,
   getRestaurantDetails,
   getAllRestaurants,
+  getTopRestaurant,
 } from "../controller/restaurantController.js";
 import { isAuthenticatedUser } from "../middleware/auth.js";
 
@@ -27,5 +28,6 @@ router
 
 router.route("/restaurant/:id").get(getRestaurantDetails);
 router.route("/restaurants").get(getAllRestaurants);
+router.route("/restaurants/top").get(getTopRestaurant);
 
 export default router;

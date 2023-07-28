@@ -10,7 +10,7 @@ const Homepage = () => {
     <div className="Homepage">
       <Navbar />
       <Header />
-      <Cards />
+      {/* <Cards /> */}
       <RestaurantOwner />
       <Footer />
     </div>
