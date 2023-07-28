@@ -1,7 +1,7 @@
-import React from 'react'
-import RestaurantCard from "./RestaurantCard/RestaurantCard";
+import React from "react";
+import RestaurantCard from "../layout/RestaurantCard/RestaurantCard";
 
-const TopResView = () => {
+const AllResView = () => {
   return (
     <div>
       <h3 className="heading align-items-center">All Restaurants</h3>
@@ -28,9 +28,8 @@ const TopResView = () => {
           </div>
         </div>
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default TopResView
+export default AllResView;

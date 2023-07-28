@@ -1,13 +1,13 @@
-import React from 'react';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import './ParallexView.scss';
-import TopResView from '../TopResView';
-import AllResView from '../AllResView';
+import React from "react";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import "./ParallexView.scss";
+import TopResView from "../TopResView";
+import AllResView from "../AllResView";
 
 const ParallexView = () => {
   return (
     <div className="ParallexView">
-      <Parallax pages={3} style={{ top: '0', left: '0' }} className="animation">
+      <Parallax pages={3} style={{ top: "0", left: "0" }} className="animation">
         <ParallaxLayer offset={0} speed={0.25}>
           <div className="animation_layer parallax" id="artback"></div>
         </ParallaxLayer>
@@ -29,14 +29,14 @@ const ParallexView = () => {
         <ParallaxLayer offset={0} speed={0.45}>
           <div className="animation_layer parallax" id="jungle4"></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={0} speed={0.40}>
+        <ParallaxLayer offset={0} speed={0.4}>
           <div className="animation_layer parallax" id="manonmountain"></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.35}>
           <div className="animation_layer parallax" id="jungle5"></div>
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0.35}>
-          <div className="background-white">
+          <div className="background-white" style={{ height: "300px" }}>
             <TopResView />
           </div>
         </ParallaxLayer>

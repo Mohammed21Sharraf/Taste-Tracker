@@ -1,21 +1,20 @@
-import React from 'react'
-import Navbar from './Navbar/Navbar';
-import Header from './Header/Header';
-import Cards from './RestaurantCard/Cards'
-import Footer from './Footer/Footer'
-import RestaurantOwner from './RestaurantOwner/RestaurantOwner';
+import React from "react";
+import RestaurantOwner from "./RestaurantOwner/RestaurantOwner";
+import Navbar from "../layout/Navbar/Navbar";
+import Header from "../layout/Header/Header";
+import Footer from "../layout/Footer/Footer";
+import Cards from "../layout/RestaurantCard/Cards";
 
 const Homepage = () => {
   return (
     <div className="Homepage">
-        <Navbar/>
-        <Header/>
-        <Cards/>
-        <RestaurantOwner/>
-        <Footer/>
-        
+      <Navbar />
+      <Header />
+      <Cards />
+      <RestaurantOwner />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;
