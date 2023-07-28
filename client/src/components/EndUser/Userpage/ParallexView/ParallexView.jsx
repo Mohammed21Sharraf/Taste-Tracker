@@ -3,6 +3,7 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import "./ParallexView.scss";
 import TopResView from "../TopResView";
 import AllResView from "../AllResView";
+import AllTopView from "../AllTopView";
 
 const ParallexView = () => {
   return (
@@ -37,14 +38,14 @@ const ParallexView = () => {
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0.35}>
           <div className="background-white" style={{ height: "300px" }}>
-            <TopResView />
+            <AllTopView />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={2} speed={0.35}>
+        {/* <ParallaxLayer offset={2} speed={0.35}>
           <div className="background-white">
             <AllResView />
           </div>
-        </ParallaxLayer>
+        </ParallaxLayer> */}
       </Parallax>
     </div>
   );

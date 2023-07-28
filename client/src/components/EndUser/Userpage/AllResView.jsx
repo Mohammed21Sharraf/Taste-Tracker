@@ -23,6 +23,54 @@ const AllResView = () => {
           <div class="col">
             <RestaurantCard />
           </div>
+        </div>
+        <div className="row">
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+        </div>
+        <div className="row">
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+        </div>
+        <div className="row">
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
+          <div class="col">
+            <RestaurantCard />
+          </div>
           <div class="col">
             <RestaurantCard />
           </div>
