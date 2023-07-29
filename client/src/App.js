@@ -10,6 +10,7 @@ import Profile from "../src/components/Restaurant/Profile/Profile";
 import store from "./store";
 import { loadUser } from "./features/user/userSlice";
 import Homepage from "./components/EndUser/Homepage/Homepage";
+import Review from "./components/EndUser/Review/Review";
 import Userpage from "./components/EndUser/Userpage/Userpage";
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
           <Route exact path="/restaurant/profile" Component={Profile} />
           <Route exact path="/homepage" Component={Homepage} />
           <Route exact path="/userpage" Component={Userpage} />
+          <Route exact path="/reviews" Component={Review} />
+
         </Routes>
       </Router>
     </Suspense>

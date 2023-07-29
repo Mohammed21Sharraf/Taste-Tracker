@@ -1,0 +1,27 @@
+.first-text{
+    text-align: center;
+    margin-top: 10rem; 
+    color: #4c0f1e;
+    font-weight: bold;
+    margin-top: 100px;
+    
+}
+.hr{
+  width:50%;
+  text-align:left;
+  margin-left:0;
+}
+.submit-review {
+    background-color: #4c0f1e;
+    color: #ffff;
+    border: none;
+    padding: 0.3rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 0.2rem; /* border-radius */
+    
+    &:hover {
+      background-color: #A7132B;
+      color: #ffff;
+    }
+  }

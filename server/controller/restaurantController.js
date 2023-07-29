@@ -14,6 +14,8 @@ export const createRestaurant = async (req, res) => {
       logo,
     } = req.body;
 
+    console.log(req.user.name);
+
     const restaurant = await Restaurant.create({
       name: restaurantName,
       description: restaurantDescription,
@@ -23,6 +25,7 @@ export const createRestaurant = async (req, res) => {
       user: req.user._id,
       ratings: rating,
       logo: logo,
+      username: req.user.name
     });
 
     res.status(202).json({
@@ -91,11 +94,11 @@ export const restaurantDetails = async (req, res) => {
 
 // Get Restaurant Review
 export const restaurantReviews = async (req, res) => {
-  const id = req.user._id;
+  const id = req.params.id; 
 
   try {
-    const reviews = await Restaurant.find({ user: id }).select("reviews");
-    res.status(200).json(reviews);
+    const reviews = await Restaurant.findById(id);
+    res.status(200).json(reviews.reviews);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -118,6 +121,35 @@ export const restaurantUpdate = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+// Create User Review 
+
+export const createReview = async (req, res) => {
+  const id = req.params.id;
+  const {ratings, comments, images} = req.body;
+  const review = {
+    user: req.user._id,
+    name: req.user.name,
+    rating: ratings, 
+    comment: comments,
+    img: images,
+  };
+  const restaurant = await Restaurant.findById(id);
+
+  restaurant.reviews.push(review);
+
+  await restaurant.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+    restaurant,
+  });
+
+}
+
+// Update Restaurant review 
+
+
 
 // Get all restaurants
 export const getAllRestaurants = async (req, res) => {
