@@ -10,6 +10,8 @@ export const createRestaurant = async (req, res) => {
       averageOrderValue,
       category,
       seatCapacity,
+      rating,
+      logo,
     } = req.body;
 
     console.log(req.user.name);
@@ -21,6 +23,8 @@ export const createRestaurant = async (req, res) => {
       category: category,
       capacity: seatCapacity,
       user: req.user._id,
+      ratings: rating,
+      logo: logo,
       username: req.user.name
     });
 
@@ -150,18 +154,23 @@ export const createReview = async (req, res) => {
 // Get all restaurants
 export const getAllRestaurants = async (req, res) => {
   try {
-    const resultPerPage = 2;
+    const resultPerPage = 5;
+    const restaurantCount = await Restaurant.countDocuments();
+
     const apiFeatures = new ApiFeatures(Restaurant.find(), req.query)
       .search()
       .filter()
       .pagination(resultPerPage);
 
-    console.log(apiFeatures);
     const restaurants = await apiFeatures.query;
+    const filteredlength = restaurants.length;
 
     res.status(202).json({
       success: true,
       restaurants,
+      restaurantCount,
+      resultPerPage,
+      filteredlength,
     });
   } catch (error) {
     res.status(404).json({
@@ -178,6 +187,22 @@ export const getRestaurantDetails = async (req, res) => {
     res.status(200).json({
       success: true,
       restaurant,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: error,
+    });
+  }
+};
+
+// Get top restaurants
+export const getTopRestaurant = async (req, res) => {
+  try {
+    const restaurants = await Restaurant.find().sort({ ratings: -1 }).limit(4);
+    res.status(200).json({
+      success: true,
+      restaurants,
     });
   } catch (error) {
     res.status(404).json({

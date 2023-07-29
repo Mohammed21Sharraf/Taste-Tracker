@@ -25,12 +25,7 @@ const restaurantSchema = new mongoose.Schema({
     },
   ],
   logo: {
-    public_id: {
-      type: String,
-    },
-    url: {
-      type: String,
-    },
+    type: String,
   },
   category: {
     type: String,

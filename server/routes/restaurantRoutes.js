@@ -9,6 +9,7 @@ import {
   createReview,
   getRestaurantDetails,
   getAllRestaurants,
+  getTopRestaurant,
 } from "../controller/restaurantController.js";
 import { isAuthenticatedUser } from "../middleware/auth.js";
 
@@ -28,6 +29,7 @@ router
 
 router.route("/restaurant/:id").get(getRestaurantDetails);
 router.route("/restaurants").get(getAllRestaurants);
+router.route("/restaurants/top").get(getTopRestaurant);
 router.route("/restaurant/give_review/:id").post(isAuthenticatedUser, createReview);
 
 export default router;
