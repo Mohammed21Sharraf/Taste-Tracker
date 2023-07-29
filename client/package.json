@@ -59,5 +59,9 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "postcss-import": "^15.1.0",
+    "tailwindcss": "^3.3.3"
+  }
 }
