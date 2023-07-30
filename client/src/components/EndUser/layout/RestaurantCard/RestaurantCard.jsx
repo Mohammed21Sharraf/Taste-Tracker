@@ -6,7 +6,7 @@ const RestaurantCard = ({ restaurant }) => {
   return (
     <Link
       style={{ textDecoration: "none" }}
-      to={`restaurant/${restaurant._id}`}
+      to={`reviews/${restaurant._id}`}
     >
       <div className="card text-center shadow">
         <div className="overflow">
@@ -26,7 +26,7 @@ const RestaurantCard = ({ restaurant }) => {
             ipsam!
           </p>
 
-          <a href="#Explore">
+          <a href={`reviews/`+restaurant._id}>
             <button className="explore-button">Explore</button>
           </a>
 

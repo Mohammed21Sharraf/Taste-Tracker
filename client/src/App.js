@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/restaurant/profile" Component={Profile} />
           <Route exact path="/homepage" Component={Homepage} />
           <Route exact path="/userpage" Component={Userpage} />
-          <Route exact path="/reviews" Component={Review} />
+          <Route exact path="/reviews/:id" Component={Review} />
 
         </Routes>
       </Router>
