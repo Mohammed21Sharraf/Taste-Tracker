@@ -4,6 +4,7 @@ import "./AllResView.scss";
 import axios from "axios";
 import { baseURL } from "../../../../api.js";
 import Pagination from "react-js-pagination";
+import { useParams } from "react-router-dom";
 
 const AllResView = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -15,12 +16,17 @@ const AllResView = () => {
   const [resultPerPage, setResultPerPage] = useState(0);
   const [filteredlength, setFilteredlength] = useState(0);
   const [updateUI, setUpdateUI] = useState(false);
+  let { keyword } = useParams();
+
+  if (!keyword) {
+    keyword = "";
+  }
 
   let link;
   if (selectedCategory === "All") {
-    link = `${baseURL}/api/v1/restaurants?averageOrderValue[gte]=${averageOrderValue}&page=${currentPage}`;
+    link = `${baseURL}/api/v1/restaurants?keyword=${keyword}&averageOrderValue[gte]=${averageOrderValue}&page=${currentPage}`;
   } else {
-    link = `${baseURL}/api/v1/restaurants?averageOrderValue[gte]=${averageOrderValue}&category=${selectedCategory}&page=${currentPage}`;
+    link = `${baseURL}/api/v1/restaurants?keyword=${keyword}&averageOrderValue[gte]=${averageOrderValue}&category=${selectedCategory}&page=${currentPage}`;
   }
 
   const setCurrentPageNo = (e) => {
