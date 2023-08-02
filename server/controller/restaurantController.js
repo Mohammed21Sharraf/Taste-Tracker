@@ -25,7 +25,7 @@ export const createRestaurant = async (req, res) => {
       user: req.user._id,
       ratings: rating,
       logo: logo,
-      username: req.user.name
+      username: req.user.name,
     });
 
     res.status(202).json({
@@ -94,7 +94,7 @@ export const restaurantDetails = async (req, res) => {
 
 // Get Restaurant Review
 export const restaurantReviews = async (req, res) => {
-  const id = req.params.id; 
+  const id = req.params.id;
 
   try {
     const reviews = await Restaurant.findById(id);
@@ -122,15 +122,15 @@ export const restaurantUpdate = async (req, res) => {
   }
 };
 
-// Create User Review 
+// Create User Review
 
 export const createReview = async (req, res) => {
   const id = req.params.id;
-  const {ratings, comments, images} = req.body;
+  const { ratings, comments, images } = req.body;
   const review = {
     user: req.user._id,
     name: req.user.name,
-    rating: ratings, 
+    rating: ratings,
     comment: comments,
     img: images,
   };
@@ -144,12 +144,9 @@ export const createReview = async (req, res) => {
     success: true,
     restaurant,
   });
+};
 
-}
-
-// Update Restaurant review 
-
-
+// Update Restaurant review
 
 // Get all restaurants
 export const getAllRestaurants = async (req, res) => {

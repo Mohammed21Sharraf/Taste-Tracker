@@ -20,9 +20,10 @@ router
   .route("/restaurant/reservations")
   .get(isAuthenticatedUser, getRestaurantReservations);
 
-router.route("/reserver").post(isAuthenticatedUser, createReservation);
 router.route("/restaurant/details").get(isAuthenticatedUser, restaurantDetails);
-router.route("/restaurant/reviews/:id").get(isAuthenticatedUser, restaurantReviews);
+router
+  .route("/restaurant/reviews/:id")
+  .get(isAuthenticatedUser, restaurantReviews);
 router
   .route("/restaurant/update/:id")
   .put(isAuthenticatedUser, restaurantUpdate);
@@ -30,6 +31,8 @@ router
 router.route("/restaurant/:id").get(getRestaurantDetails);
 router.route("/restaurants").get(getAllRestaurants);
 router.route("/restaurants/top").get(getTopRestaurant);
-router.route("/restaurant/give_review/:id").post(isAuthenticatedUser, createReview);
+router
+  .route("/restaurant/give_review/:id")
+  .post(isAuthenticatedUser, createReview);
 
 export default router;
