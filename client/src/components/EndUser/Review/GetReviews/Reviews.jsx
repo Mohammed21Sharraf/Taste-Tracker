@@ -1,3 +1,4 @@
+// Updated JSX
 import React, { useState, useEffect } from "react";
 import "./Reviews.scss";
 import "../../../../index.css";
@@ -7,6 +8,7 @@ import ReviewCard from "../ReviewCard/ReviewCard";
 import axios from "axios";
 import { baseURL } from "../../../../api";
 import { useParams } from "react-router-dom";
+import img from "../../../../img/burger.png";
 
 const Reviews = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -34,62 +36,50 @@ const Reviews = () => {
   return (
     <div className="Reviews-container">
       <div className="Reviews-header">
-        <h1 className="Reviews-title">{resData.name}</h1>
-        <div className="Reviews-description">
-          <h2 className="Reviews-description-title">Descriptions</h2>
-          <p>{resData.description}</p>
+        <div className="Reviews-title">
+          <h1>{resData.name}</h1>
         </div>
-        <hr className="Reviews-hr" />
-        <div className="Reviews-info">
-          <div className="Reviews-info-item">
-            <h4 className="Reviews-info-title">
-              Average Order Value: {resData.averageOrderValue}
-            </h4>
-            <br />
-            <h4 className="Reviews-info-title">
-              Seat Capacity: {resData.capacity}
-            </h4>
-            <br />
+        <div className="Reviews-image-container">
+          <img src={img} alt="Restaurant Image" />
+        </div>
+        <div className="Reviews-info-container">
+            <h2 className="Reviews-category-title">Description: </h2>
+            <p>{resData.description}</p>
+              <h4 className="Reviews-category-title">
+                Average Order Value: {resData.averageOrderValue}
+              </h4>
+              <h4 className="Reviews-category-title">
+                Seat Capacity: {resData.capacity}
+              </h4>
+            <h2 className="Reviews-category-title">Category: </h2>
+            {resData.category}
+          
+        </div>
+       
+        <div className="Reviews-buttons">
+          <div className="Reviews-submit">
+            <div className="Reviews-submit-text">
+              Share what you feel about the food!
+            </div>
+            <button className="Reviews-submit-button" onClick={() => setModalOpen(true)}>
+              Submit Review
+            </button>
           </div>
-        </div>
-        <hr className="Reviews-hr" />
-        <div className="Reviews-category">
-          <h2 className="Reviews-category-title">Category</h2>
-          {resData.category}
+          <div className="Reviews-reserve-seat">
+            <div className="Reviews-reserve-seat-text">Reserve Your Seat Now!</div>
+            <button className="Reviews-submit-button">Reserve Seat</button>
+          </div>
         </div>
         <hr className="Reviews-hr" />
         <div className="Reviews-reviews">
           <h2 className="Reviews-reviews-title">Reviews</h2>
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {Array.from(Array(reviewData.length)).map((_, index) => (
-              <Grid xs={2} sm={4} md={4} key={index}>
-                {reviewData.map((review) => (
-                  <ReviewCard
-                    key={review._id}
-                    id={review._id}
-                    reviews={review}
-                    setUpdateUI={setUpdateUI}
-                  />
-                ))}
+          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            {reviewData.map((review) => (
+              <Grid xs={6} sm={4} md={3} key={review._id}>
+                <ReviewCard key={review._id} id={review._id} reviews={review} setUpdateUI={setUpdateUI} />
               </Grid>
             ))}
           </Grid>
-        </div>
-        <hr className="Reviews-hr" />
-        <div className="Reviews-submit">
-          <div className="Reviews-submit-text">
-            Share what you feel about the food!
-          </div>
-          <button
-            className="Reviews-submit-button"
-            onClick={() => setModalOpen(true)}
-          >
-            Submit Review
-          </button>
         </div>
       </div>
       <div>

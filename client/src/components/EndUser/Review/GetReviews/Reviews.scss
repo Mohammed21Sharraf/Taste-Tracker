@@ -1,96 +1,155 @@
+// Updated SCSS
 .Reviews-container {
   margin: 0 auto;
-  padding: 7rem; 
-}
-
-.Reviews-header {
-  text-align: left;
-  color: #4c0f1e;
-}
-
-.Reviews-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  padding-top: 1rem;
-}
-
-.Reviews-hr {
-  width: 50%;
-  text-align: left;
-  margin-left: 0;
-  background-color: #4c0f1e;
-  height: 1px;
-  margin: 2rem 0;
-  border: none;
-}
-
-.Reviews-description {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.Reviews-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.Reviews-info-item {
-  margin-bottom: 1rem;
-}
-
-.Reviews-info-title {
-  font-weight: bold;
-  color: #4c0f1e;
-  margin-right: 1rem;
-  font-size: 1.2rem; 
-}
-
-.Reviews-category {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.Reviews-category-title {
-  font-weight: bold;
-  color: #4c0f1e;
-  font-size: 1.2rem; 
-}
-
-.Reviews-reviews {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Reviews-reviews-title {
-  font-weight: bold;
-  color: #4c0f1e;
-  font-size: 1.2rem; 
-}
-
-.Reviews-submit {
-  background-color: #fff;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  
+
+  .Reviews-header {
+    text-align: center;
+    color: #4c0f1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding-top: 7rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    
+  }
+  
+
+  .Reviews-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: left;
+    padding-left: 30rem;
+    
+  }
+
+  
+  .Reviews-category {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+    text-align: left;
+    
+  }
+
+  .Reviews-category-title {
+    font-weight: bold;
+    color: #4c0f1e;
+    font-size: 1.7rem;
+    text-align: left;
+  }
+
+  .Reviews-image-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 8rem;
+    margin-right: 32rem;
+    
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+
+  .Reviews-hr {
+    width: 50%;
+    text-align: left;
+    margin-left: 0;
+    background-color: #4c0f1e;
+    height: 1px;
+    margin: 2rem 0;
+    border: none;
+    display: none;
+  }
+
+  .Reviews-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 2rem;
+
+    .Reviews-submit,
+    .Reviews-reserve-seat {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      flex: 1;
+
+      .Reviews-submit-text,
+      .Reviews-reserve-seat-text {
+        color: #4c0f1e;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .Reviews-submit-button,
+      .Reviews-reserve-seat-button {
+        background-color: #4c0f1e;
+        color: #fff;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 0.2rem;
+
+        &:hover {
+          background-color: #a7132b;
+        }
+      }
+    }
+
+    .Reviews-reserve-seat {
+      margin-left: 1rem;
+    }
+  }
+
+  .Reviews-reviews {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .Reviews-reviews-title {
+    font-weight: bold;
+    color: #4c0f1e;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+  }
 }
 
-.Reviews-submit-text {
-  color: #4c0f1e;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
+// Adjusting the alignment of the buttons in mobile view
+@media (max-width: 768px) {
+  .Reviews-buttons {
+    flex-direction: column;
+    align-items: center;
 
-.Reviews-submit-button {
-  background-color: #4c0f1e;
-  color: #fff;
-  border: none;
-  padding: 0.3rem 1rem;
-  font-size: 1rem;
-  transition: background-color 0.3s, color 0.3s;
-  border-radius: 0.2rem;
-  
-  
+    .Reviews-submit,
+    .Reviews-reserve-seat {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
 }
