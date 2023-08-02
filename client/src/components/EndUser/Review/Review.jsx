@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "../layout/Navbar/Navbar";
+import UserNavbar from "../layout/UserNavbar/UserNavbar";
 import Reviews from "./GetReviews/Reviews";
 import Footer from "../layout/Footer/Footer";
 
 const Review = () => {
   return (
     <div className="Review">
-      <Navbar />
+      <UserNavbar />
       <div>
         <Reviews />
       </div>

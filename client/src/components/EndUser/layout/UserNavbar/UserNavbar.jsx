@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./UserNavbar.scss";
 import { Link, useNavigate } from "react-router-dom";
 
 const UserNavbar = () => {
-  const [isNavbarMaroon, setNavbarMaroon] = useState(true);
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
@@ -16,25 +15,12 @@ const UserNavbar = () => {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
-      setNavbarMaroon(isScrolled);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <nav className={`UserNavbar ${isNavbarMaroon ? "maroon" : ""}`}>
+    <nav className="UserNavbar">
       <div className="logo-item">
-        <span className={`logo ${isNavbarMaroon ? "white-text" : ""}`}>TASTE TRACKER</span>
+        <span className="logo">TASTE TRACKER</span>
       </div>
-      <form className={`search-bar-container ${isNavbarMaroon ? "maroon-text" : ""}`} onSubmit={searchSubmitHandler}>
+      <form className="search-bar-container" onSubmit={searchSubmitHandler}>
         <div className="search-bar">
           <input
             type="text"
@@ -44,7 +30,7 @@ const UserNavbar = () => {
           <input type="submit" value="Submit" />
         </div>
       </form>
-      <div className={`items ${isNavbarMaroon ? "maroon-text" : ""}`}>
+      <div className="items">
         <div className="item">
           <Link to="/homepage" className="item-link">
             <span>Home</span>
