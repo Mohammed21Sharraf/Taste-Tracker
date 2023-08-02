@@ -11,6 +11,10 @@ const reservationSchema = new mongoose.Schema({
     ref: "Restaurant",
     required: true,
   },
+  restaurantName: {
+    type: String,
+    required: true,
+  },
   seatCapacity: {
     type: Number,
     required: true,
@@ -20,12 +24,16 @@ const reservationSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now(),
+  },
+  status: {
+    type: String,
+    default: "Processing",
   },
 });
 

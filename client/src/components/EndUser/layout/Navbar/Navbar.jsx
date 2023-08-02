@@ -116,13 +116,13 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="item">
-              <Link to="/about">
-                <span>About</span>
+              <Link to="/wishlist" className="item-link">
+                <span>Wishlist</span>
               </Link>
             </div>
-            <div className={`item ${!isNavbarOpaque ? "white-text" : ""}`}>
-              <Link to="/signin">
-                <span>Sign In</span>
+            <div className="item">
+              <Link to="/reservations" className="item-link">
+                <span>Reservations</span>
               </Link>
             </div>
           </div>

@@ -6,12 +6,21 @@ export const createReservation = async (req, res) => {
   try {
     const { seatCapacity, time, date } = req.body;
 
+    const newDate = new Date(date);
+    const day = newDate.toLocaleString("default", { day: "2-digit" });
+    const month = newDate.toLocaleString("default", { month: "long" });
+    const year = newDate.toLocaleString("default", { year: "numeric" });
+
+    const restaurant = await Restaurant.findById(req.params.id);
+    const restaurantName = restaurant.name;
+
     const reservation = await Reservation.create({
       user: req.user._id,
       restaurant: req.params.id,
+      restaurantName,
       seatCapacity,
       time,
-      date,
+      date: day + "rd " + month + " " + year,
     });
 
     res.status(202).json({
@@ -36,6 +45,7 @@ export const createReservation = async (req, res) => {
 export const myReservations = async (req, res) => {
   try {
     const reservations = await Reservation.find({ user: req.user._id });
+
     res.status(202).json({
       success: true,
       reservations,

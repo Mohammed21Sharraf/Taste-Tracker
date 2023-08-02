@@ -37,18 +37,18 @@ const UserNavbar = () => {
           </Link>
         </div>
         <div className="item">
-          <Link to="/restaurants" className="item-link">
+          <Link to="/userpage" className="item-link">
             <span>Restaurants</span>
           </Link>
         </div>
         <div className="item">
-          <Link to="/about" className="item-link">
-            <span>About</span>
+          <Link to="/wishlist" className="item-link">
+            <span>Wishlist</span>
           </Link>
         </div>
         <div className="item">
-          <Link to="/signin" className="item-link">
-            <span>Sign In</span>
+          <Link to="/reservations" className="item-link">
+            <span>Reservations</span>
           </Link>
         </div>
       </div>
