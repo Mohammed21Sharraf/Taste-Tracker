@@ -126,13 +126,13 @@ export const restaurantUpdate = async (req, res) => {
 
 export const createReview = async (req, res) => {
   const id = req.params.id;
-  const {ratings, comments, images} = req.body;
+  const {ratings, comments} = req.body;
   const review = {
     user: req.user._id,
     name: req.user.name,
     rating: ratings, 
     comment: comments,
-    img: images,
+    // img: images,
   };
   const restaurant = await Restaurant.findById(id);
 

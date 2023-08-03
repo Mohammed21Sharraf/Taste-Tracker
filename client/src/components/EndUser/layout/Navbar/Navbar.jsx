@@ -104,7 +104,7 @@ const Navbar = () => {
             </div>
             <div className={`item ${!isNavbarOpaque ? "white-text" : ""}`}>
               <Link to="/signin">
-                <span>Sign In</span>
+                <span>Sign Out</span>
               </Link>
             </div>
           </div>

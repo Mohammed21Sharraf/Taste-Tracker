@@ -123,7 +123,7 @@ const AllResView = () => {
           <input
             type="range"
             min="0"
-            max="1000"
+            max="10000"
             value={averageOrderValue}
             onChange={handleSliderChange}
             step="1"
