@@ -1,24 +1,16 @@
-import React from 'react'
-import Footer from '../layout/Footer/Footer'
-import Navbar from '../layout/Navbar/Navbar'
-import Reviews from './GetReviews/Reviews'
-
+import React, { Fragment } from "react";
+import UserNavbar from "../layout/UserNavbar/UserNavbar";
+import Reviews from "./GetReviews/Reviews";
+import Footer from "../layout/Footer/Footer";
 
 const Review = () => {
-
   return (
-    <div className="Review">
-      <Navbar/>
-      <div>
-        <Reviews />
-      </div>
-      <div>
-        <Footer />
-      </div>
+    <Fragment>
+      <UserNavbar/>
+      <Reviews/>
+      <Footer/>
+    </Fragment>
+  );
+};
 
-    </div>
-
-  )
-}
-
-export default Review
+export default Review;

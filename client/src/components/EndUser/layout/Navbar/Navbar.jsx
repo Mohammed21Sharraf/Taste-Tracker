@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isNavbarOpaque, setNavbarOpaque] = useState(false);
@@ -40,6 +40,18 @@ const Navbar = () => {
     };
   }, []);
 
+  const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
+
+  const searchSubmitHandler = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+      navigate(`/userpage/${keyword}`);
+    } else {
+      navigate("/userpage");
+    }
+  };
+
   return (
     <Fragment>
       {nav ? (
@@ -77,15 +89,21 @@ const Navbar = () => {
               TASTE TRACKER
             </span>
           </div>
-          <div
+          <form
             className={`search-bar-container ${
               isNavbarOpaque ? "maroon-text" : ""
             }`}
+            onSubmit={searchSubmitHandler}
           >
             <div className="search-bar">
-              <input type="text" placeholder="Search" />
+              <input
+                type="text"
+                placeholder="Search a Restaurant"
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+              <input type="submit" value="Submit" />
             </div>
-          </div>
+          </form>
           <div className={`items ${isNavbarOpaque ? "maroon-text" : ""}`}>
             <div className="item">
               <Link to="/homepage" className="item">
@@ -98,13 +116,13 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="item">
-              <Link to="/about">
-                <span>About</span>
+              <Link to="/wishlist" className="item-link">
+                <span>Wishlist</span>
               </Link>
             </div>
-            <div className={`item ${!isNavbarOpaque ? "white-text" : ""}`}>
-              <Link to="/signin">
-                <span>Sign Out</span>
+            <div className="item">
+              <Link to="/reservations" className="item-link">
+                <span>Reservations</span>
               </Link>
             </div>
           </div>

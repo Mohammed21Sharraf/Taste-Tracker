@@ -12,6 +12,8 @@ import { loadUser } from "./features/user/userSlice";
 import Homepage from "./components/EndUser/Homepage/Homepage";
 import Review from "./components/EndUser/Review/Review";
 import Userpage from "./components/EndUser/Userpage/Userpage";
+import Wishlist from "./components/EndUser/Wishlist/Wishlist";
+import Reservations from "./components/EndUser/Reservations/Reservations";
 
 function App() {
   React.useEffect(() => {
@@ -33,8 +35,10 @@ function App() {
           <Route exact path="/restaurant/profile" Component={Profile} />
           <Route exact path="/homepage" Component={Homepage} />
           <Route exact path="/userpage" Component={Userpage} />
+          <Route exact path="/userpage/:keyword" Component={Userpage} />
           <Route exact path="/reviews/:id" Component={Review} />
-
+          <Route exact path="/wishlist" Component={Wishlist} />
+          <Route exact path="/reservations" Component={Reservations} />
         </Routes>
       </Router>
     </Suspense>
