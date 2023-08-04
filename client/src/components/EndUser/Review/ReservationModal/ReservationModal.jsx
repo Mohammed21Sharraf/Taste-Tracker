@@ -7,7 +7,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { baseURL } from "../../../../api";
 
 const ReservationModal = ({ modalOpen, setModalOpen }) => {
   const theme = useMantineTheme();
@@ -15,9 +17,33 @@ const ReservationModal = ({ modalOpen, setModalOpen }) => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [seats, setSeats] = useState(1);
   const { id } = useParams();
+  const navigate = useNavigate();
+  let date;
+  let time;
+
+  if (selectdDate) {
+    date =
+      String(selectdDate.$y) +
+      "-0" +
+      String(selectdDate.$M + 1) +
+      "-" +
+      String(selectdDate.$D);
+  }
+
+  if (selectedTime) {
+    time = String(selectedTime.$H) + ":" + String(selectedTime.$m);
+  }
 
   const handleReservation = () => {
-    console.log(id);
+    axios
+      .post(
+        `${baseURL}/api/v1/reserve/${id}`,
+        { seatCapacity: seats, time: time, date: date },
+        { withCredentials: true }
+      )
+      .then(() => {
+        navigate("/reservations");
+      });
   };
 
   return (

@@ -20,7 +20,7 @@ export const createReservation = async (req, res) => {
       restaurantName,
       seatCapacity,
       time,
-      date: day + "rd " + month + " " + year,
+      date: day + " " + month + " " + year,
     });
 
     res.status(202).json({
