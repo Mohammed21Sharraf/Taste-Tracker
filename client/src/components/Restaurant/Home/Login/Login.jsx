@@ -47,6 +47,8 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated && role === "restaurantOwner") {
       navigate("/form");
+    } else if (isAuthenticated && role === "user") {
+      navigate("/userpage")
     }
   }, [isAuthenticated, role, navigate]);
 
