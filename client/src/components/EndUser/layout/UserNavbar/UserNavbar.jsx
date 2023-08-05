@@ -51,6 +51,11 @@ const UserNavbar = () => {
             <span>Reservations</span>
           </Link>
         </div>
+        <div className="item">
+              <Link to="/reviews" className="item-link">
+                <span>Your Reviews</span>
+              </Link>
+            </div>
       </div>
     </nav>
   );
