@@ -15,6 +15,7 @@ import Userpage from "./components/EndUser/Userpage/Userpage";
 import Wishlist from "./components/EndUser/Wishlist/Wishlist";
 import Reservations from "./components/EndUser/Reservations/Reservations";
 import UserReviews from "./components/EndUser/UserReviews/UserReviews";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
   React.useEffect(() => {
