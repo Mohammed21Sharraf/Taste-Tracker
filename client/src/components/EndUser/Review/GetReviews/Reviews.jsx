@@ -18,6 +18,7 @@ const Reviews = () => {
   const [resData, setResData] = useState([]);
   const [updateUI, setUpdateUI] = useState(false);
   const id = useParams();
+  
 
   // Get Review information
   useEffect(() => {

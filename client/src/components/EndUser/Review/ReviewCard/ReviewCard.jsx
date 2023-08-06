@@ -11,6 +11,7 @@ import { CardActions } from '@mui/material';
 import img from "../../../../img/burger.png"
 
 
+
 function ReviewCard({ id, reviews }) {
   const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
@@ -26,10 +27,6 @@ function ReviewCard({ id, reviews }) {
         <Typography gutterBottom variant="h4" component="div">
           {reviews.name}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
-            </Typography> */}
       </CardContent>
       <CardActions>
         <ExpandMore

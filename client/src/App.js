@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Restaurant/Home/Home";
 import Reservation from "./components/Restaurant/Reservation/Reservation";
 import Form from "./components/Restaurant/Home/Form/Form";
@@ -13,6 +14,7 @@ import Review from "./components/EndUser/Review/Review";
 import Userpage from "./components/EndUser/Userpage/Userpage";
 import Wishlist from "./components/EndUser/Wishlist/Wishlist";
 import Reservations from "./components/EndUser/Reservations/Reservations";
+import UserReviews from "./components/EndUser/UserReviews/UserReviews";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
           <Route exact path="/userpage" Component={Userpage} />
           <Route exact path="/userpage/:keyword" Component={Userpage} />
           <Route exact path="/reviews/:id" Component={Review} />
+          <Route exact path="/reviews" Component={UserReviews} />
           <Route exact path="/wishlist" Component={Wishlist} />
           <Route exact path="/reservations" Component={Reservations} />
         </Routes>
