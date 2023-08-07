@@ -1,0 +1,29 @@
+.wishlist-button {
+  background-color: #4c0f1e;
+  color: #ffff;
+  border: none;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 0.2rem; /* border-radius */
+
+  &:hover {
+    background-color: #a7132b;
+    color: #ffff;
+  }
+}
+
+.view-button {
+  background-color: #4c0f1e;
+  color: #ffff;
+  border: none;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 0.2rem; /* border-radius */
+  margin-top: 2px;
+  &:hover {
+    background-color: #a7132b;
+    color: #ffff;
+  }
+}
