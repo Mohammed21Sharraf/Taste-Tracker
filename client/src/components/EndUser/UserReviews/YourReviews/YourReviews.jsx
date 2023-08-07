@@ -36,19 +36,19 @@ const YourReviews = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [yourReviewData, editReviewData] = useState([]);
     const [updateUI, setUpdateUI] = useState(false);
-    const id = useParams();
-    console.log(id.id);
+    // const id = useParams();
+    // console.log(id.id);
 
-    useEffect(() => {
-        axios
-          .get(`${baseURL}/api/v1/restaurant/user-review/${id.id}`, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            editReviewData(res.data);
-            console.log(res.data);
-          });
-      }, [updateUI, id]);
+    // useEffect(() => {
+    //     axios
+    //       .get(`${baseURL}/api/v1/restaurant/user-review/${id.id}`, {
+    //         withCredentials: true,
+    //       })
+    //       .then((res) => {
+    //         editReviewData(res.data);
+    //         console.log(res.data);
+    //       });
+    //   }, [updateUI, id]);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -57,7 +57,7 @@ const YourReviews = () => {
         <div className="your-reviews">
             <h2>Your Reviews</h2>
             <Grid container spacing={{ xs: 2, md: 8 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {yourReviewData.map((review) => (
+                {/* {yourReviewData.map((review) => ( */}
                     <Grid xs={2} sm={4} md={4} >
                         <Card sx={{ maxWidth: 345 }} setUpdateUI={setUpdateUI}>
                 <CardMedia
@@ -68,7 +68,7 @@ const YourReviews = () => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h4" component="div">
-                        {review.name}
+                        Name
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -92,14 +92,14 @@ const YourReviews = () => {
                     <CardContent>
                         <Typography paragraph>Comment:</Typography>
                         <Typography paragraph>
-                            {review.comment}
+                            comment
                         </Typography>
-                        <Typography paragraph>Ratings: {review.rating}</Typography>
+                        <Typography paragraph>Ratings: 8</Typography>
                     </CardContent>
                 </Collapse>
             </Card>
                     </Grid>
-                ))}
+                
             </Grid>
         </div>
     )

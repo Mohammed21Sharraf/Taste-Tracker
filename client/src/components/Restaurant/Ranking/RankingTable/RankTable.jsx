@@ -2,8 +2,6 @@ import React from 'react'
 import './RankTable.scss'
 import { DataGrid } from '@mui/x-data-grid';
 
-
-
 const RankTable = () => {
 
   const columns = [

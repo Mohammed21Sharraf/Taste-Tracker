@@ -15,7 +15,8 @@ import Userpage from "./components/EndUser/Userpage/Userpage";
 import Wishlist from "./components/EndUser/Wishlist/Wishlist";
 import Reservations from "./components/EndUser/Reservations/Reservations";
 import UserReviews from "./components/EndUser/UserReviews/UserReviews";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Complains from "./components/Restaurant/Complains/Complains"
+
 
 function App() {
   React.useEffect(() => {
@@ -29,7 +30,7 @@ function App() {
           <Route exact path="/" Component={Login} />
           <Route exact path="/form" Component={Form} />
           <Route exact path="/restaurant/dashboard" Component={Home} />
-
+          <Route exact path="/restaurant/complains/:id" Component={Complains} />
           <Route exact path="/restaurant/reservation" Component={Reservation} />
 
           <Route exact path="/restaurant/customer" Component={Customer} />
