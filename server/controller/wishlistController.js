@@ -66,3 +66,25 @@ export const deleteWishlist = async (req, res) => {
     });
   }
 };
+
+export const updatePrefferedFood = async (req, res) => {
+  try {
+    const { preferredFood } = req.body;
+
+    const prefFood = await Wishlist.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $set: { preferredFood: preferredFood } },
+      { new: true, runValidators: true }
+    );
+
+    res.status(202).json({
+      success: true,
+      prefFood,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error,
+    });
+  }
+};
