@@ -1,11 +1,9 @@
 import express from "express";
 import {
-  createReservation,
   createRestaurant,
   restaurantDetails,
   restaurantReviews,
   restaurantUpdate,
-  getRestaurantReservations,
   createReview,
   getRestaurantDetails,
   getAllRestaurants,
@@ -19,9 +17,6 @@ import { isAuthenticatedUser } from "../middleware/auth.js";
 const router = express.Router();
 
 router.route("/restaurant/new").post(isAuthenticatedUser, createRestaurant);
-router
-  .route("/restaurant/reservations")
-  .get(isAuthenticatedUser, getRestaurantReservations);
 
 router.route("/restaurant/details").get(isAuthenticatedUser, restaurantDetails);
 router
@@ -34,10 +29,17 @@ router
 router.route("/restaurant/:id").get(getRestaurantDetails);
 router.route("/restaurants").get(getAllRestaurants);
 router.route("/restaurants/top").get(getTopRestaurant);
-router.route("/restaurant/give_review/:id").post(isAuthenticatedUser, createReview)
-router.route("/restaurant/update-review/:id").put(isAuthenticatedUser, updateReview);
-router.route("/restaurant/delete-review").delete(isAuthenticatedUser, deleteReview);
-router.route("/restaurant/user-review/:id").get(isAuthenticatedUser, showMyReviews);
-
+router
+  .route("/restaurant/give_review/:id")
+  .post(isAuthenticatedUser, createReview);
+router
+  .route("/restaurant/update-review/:id")
+  .put(isAuthenticatedUser, updateReview);
+router
+  .route("/restaurant/delete-review")
+  .delete(isAuthenticatedUser, deleteReview);
+router
+  .route("/restaurant/user-review/:id")
+  .get(isAuthenticatedUser, showMyReviews);
 
 export default router;

@@ -40,47 +40,7 @@ export const createRestaurant = async (req, res) => {
   }
 };
 
-// Get all reservation of a specific restaurant - Restaurant Owner
-export const getRestaurantReservations = async (req, res) => {
-  try {
-    const restaurant = await Restaurant.find({ user: req.user._id });
-    const reservation = restaurant[0].reservation;
-    res.status(200).json({
-      success: true,
-      reservation,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error,
-    });
-  }
-};
-
-// Create Reservation - User
-export const createReservation = async (req, res) => {
-  const { seatsBooked } = req.body;
-  const reservation = {
-    user: req.user._id,
-    name: req.user.name,
-    seatsBooked: seatsBooked,
-    time: Date.now(),
-    day: Date.now(),
-  };
-
-  const restaurant = await Restaurant.find();
-
-  restaurant[0].reservation.push(reservation);
-
-  await restaurant[0].save({ validateBeforeSave: false });
-
-  res.status(200).json({
-    success: true,
-    restaurant,
-  });
-};
-
-// Get Restaurant Details
+// Get Restaurant Details - Restaurant Owner
 export const restaurantDetails = async (req, res) => {
   const id = req.user._id;
 
@@ -92,19 +52,7 @@ export const restaurantDetails = async (req, res) => {
   }
 };
 
-// Get Restaurant Review
-export const restaurantReviews = async (req, res) => {
-  const id = req.params.id;
-
-  try {
-    const reviews = await Restaurant.findById(id);
-    res.status(200).json(reviews.reviews);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-};
-
-// Update Restaurant profile
+// Update Restaurant profile - Restaurant Owner
 export const restaurantUpdate = async (req, res) => {
   const id = req.user._id;
   try {
@@ -122,8 +70,19 @@ export const restaurantUpdate = async (req, res) => {
   }
 };
 
-// Create User Review
+// Get Restaurant Review
+export const restaurantReviews = async (req, res) => {
+  const id = req.params.id;
 
+  try {
+    const reviews = await Restaurant.findById(id);
+    res.status(200).json(reviews.reviews);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+// Create User Review
 export const createReview = async (req, res) => {
   const id = req.params.id;
   const { ratings, comments } = req.body;
@@ -147,7 +106,6 @@ export const createReview = async (req, res) => {
 };
 
 // Update Restaurant review
-
 export const updateReview = async (req, res) => {
   const id = req.params.id;
 
@@ -156,27 +114,27 @@ export const updateReview = async (req, res) => {
     user: req.user._id,
     name: req.user.name,
     rating: Number(rating),
-    comment
+    comment,
   };
 
   const restaurant = await Restaurant.findById(id);
-  restaurant.reviews.forEach(rev => {
+  restaurant.reviews.forEach((rev) => {
     if (rev.user.toString() === req.user._id.toString()) {
       if (rev._id.toString() === reviewID) {
-        (rev.rating = rating), (rev.comment = comment)
+        (rev.rating = rating), (rev.comment = comment);
       }
     }
-  })
+  });
 
   await restaurant.save({ validateBeforeSave: false });
 
   res.status(200).json({
     success: true,
-    review
-  })
-}
+    review,
+  });
+};
 
-// Delete Single Restaurant Review 
+// Delete Single Restaurant Review
 export const deleteReview = async (req, res) => {
   const id = req.query.RestaurantID;
 
@@ -184,46 +142,46 @@ export const deleteReview = async (req, res) => {
 
   const restaurant = await Restaurant.findById(id);
 
-  const reviews = restaurant.reviews.filter((rev) => rev._id.toString() !== reviewID)
+  const reviews = restaurant.reviews.filter(
+    (rev) => rev._id.toString() !== reviewID
+  );
 
   // console.log(reviews);
-
 
   await Restaurant.findByIdAndUpdate(
     id,
     {
-      reviews
-    }, {
-    new: true,
-    useFindAndModify: false
-  });
+      reviews,
+    },
+    {
+      new: true,
+      useFindAndModify: false,
+    }
+  );
 
   res.status(200).json({
     success: true,
+  });
+};
 
-  })
-}
-
-// Get reviews of a specific user 
+// Get reviews of a specific user
 export const showMyReviews = async (req, res) => {
   const id = req.params.id;
 
   const restaurant = await Restaurant.findById(id);
-  let newReview = []
+  let newReview = [];
 
-  restaurant.reviews.forEach(rev => {
+  restaurant.reviews.forEach((rev) => {
     if (rev.user.toString() === req.user._id.toString()) {
       console.log(rev);
-      newReview.push(rev)
+      newReview.push(rev);
     }
-  })
+  });
   res.status(200).json({
     success: true,
-    newReview
-  })
-
-}
-
+    newReview,
+  });
+};
 
 // Get all restaurants
 export const getAllRestaurants = async (req, res) => {
