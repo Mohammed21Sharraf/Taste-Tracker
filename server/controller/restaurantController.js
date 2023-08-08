@@ -40,47 +40,7 @@ export const createRestaurant = async (req, res) => {
   }
 };
 
-// Get all reservation of a specific restaurant - Restaurant Owner
-export const getRestaurantReservations = async (req, res) => {
-  try {
-    const restaurant = await Restaurant.find({ user: req.user._id });
-    const reservation = restaurant[0].reservation;
-    res.status(200).json({
-      success: true,
-      reservation,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error,
-    });
-  }
-};
-
-// Create Reservation - User
-export const createReservation = async (req, res) => {
-  const { seatsBooked } = req.body;
-  const reservation = {
-    user: req.user._id,
-    name: req.user.name,
-    seatsBooked: seatsBooked,
-    time: Date.now(),
-    day: Date.now(),
-  };
-
-  const restaurant = await Restaurant.find();
-
-  restaurant[0].reservation.push(reservation);
-
-  await restaurant[0].save({ validateBeforeSave: false });
-
-  res.status(200).json({
-    success: true,
-    restaurant,
-  });
-};
-
-// Get Restaurant Details
+// Get Restaurant Details - Restaurant Owner
 export const restaurantDetails = async (req, res) => {
   const id = req.user._id;
 
@@ -92,8 +52,7 @@ export const restaurantDetails = async (req, res) => {
   }
 };
 
-
-// Update Restaurant profile
+// Update Restaurant profile - Restaurant Owner
 export const restaurantUpdate = async (req, res) => {
   const id = req.user._id;
   try {
@@ -124,7 +83,6 @@ export const restaurantReviews = async (req, res) => {
 };
 
 // Create User Review and Update Review  
-
 export const createReview = async (req, res) => {
   const id = req.params.id;
   const { ratings, comments } = req.body;
@@ -167,7 +125,6 @@ export const createReview = async (req, res) => {
 };
 
 
-
 // Delete  Restaurant Review 
 export const deleteReview = async (req, res) => {
   const id = req.query.RestaurantID;
@@ -176,7 +133,9 @@ export const deleteReview = async (req, res) => {
 
   const restaurant = await Restaurant.findById(id);
 
-  const reviews = restaurant.reviews.filter((rev) => rev._id.toString() !== reviewID)
+  const reviews = restaurant.reviews.filter(
+    (rev) => rev._id.toString() !== reviewID
+  );
 
 
   let total = 0;
@@ -200,12 +159,17 @@ export const deleteReview = async (req, res) => {
     new: true,
     useFindAndModify: false
   });
+    },
+    {
+      new: true,
+      useFindAndModify: false,
+    }
+  );
 
   res.status(200).json({
     success: true,
-
-  })
-}
+  });
+};
 
 
 // Get all restaurants

@@ -1,11 +1,9 @@
 import express from "express";
 import {
-  createReservation,
   createRestaurant,
   restaurantDetails,
   restaurantReviews,
   restaurantUpdate,
-  getRestaurantReservations,
   createReview,
   getRestaurantDetails,
   getAllRestaurants,
@@ -20,9 +18,6 @@ import { isAuthenticatedUser } from "../middleware/auth.js";
 const router = express.Router();
 
 router.route("/restaurant/new").post(isAuthenticatedUser, createRestaurant);
-router
-  .route("/restaurant/reservations")
-  .get(isAuthenticatedUser, getRestaurantReservations);
 
 router.route("/restaurant/details").get(isAuthenticatedUser, restaurantDetails);
 router
@@ -44,9 +39,6 @@ router.route("/restaurant/delete-review").delete(isAuthenticatedUser, deleteRevi
 router.route("/restaurant/complain/:id").post(isAuthenticatedUser, createComplain);
 router.route("/restaurant/all-complains/:id").get(isAuthenticatedUser, restaurantComplaints);
 router.route("/restaurant/delete-complain").delete(isAuthenticatedUser, deleteComplain);
-
-
-
 
 
 export default router;
