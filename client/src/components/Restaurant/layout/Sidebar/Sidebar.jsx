@@ -5,6 +5,7 @@ import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import StarsSharpIcon from "@mui/icons-material/StarsSharp";
 import EventSeatRoundedIcon from "@mui/icons-material/EventSeatRounded";
+import ErrorIcon from '@mui/icons-material/Error';
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
@@ -49,6 +50,12 @@ const Sidebar = () => {
           <li onClick={reservation}>
             <EventSeatRoundedIcon />
             <span>Reservations</span>
+          </li>
+          <li onClick={() => {
+              navigate("/restaurant/complains");
+            }}>
+            <ErrorIcon />
+            <span>User Complaints</span>
           </li>
         </ul>
       </div>

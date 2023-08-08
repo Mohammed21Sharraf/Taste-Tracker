@@ -75,6 +75,23 @@ const restaurantSchema = new mongoose.Schema({
       },
     },
   ],
+  complaints: [
+    {
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+      complains: {
+        type: String,
+        required: true,
+      }
+    },
+  ],
 
   reservation: [
     {
