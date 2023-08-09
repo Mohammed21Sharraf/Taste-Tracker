@@ -1,22 +1,22 @@
 import React from "react";
 import "./Widget.scss";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import EventSeatIcon from "@mui/icons-material/EventSeat";
 import StarIcon from "@mui/icons-material/Star";
+import { Link } from "react-router-dom";
+import FeedbackIcon from "@mui/icons-material/Feedback";
 
-const Widget = ({ type }) => {
+const Widget = ({ type, resData }) => {
   let data;
 
   switch (type) {
-    case "customer":
+    case "complain":
       data = {
-        title: "CUSTOMERS",
+        title: "COMPLAINS",
         isMoney: false,
-        link: "See all Customers",
+        link: "View All Complains",
         icon: (
-          <PersonOutlineIcon
+          <FeedbackIcon
             className="icon"
             style={{
               color: "crimson",
@@ -30,7 +30,8 @@ const Widget = ({ type }) => {
       data = {
         title: "REVIEWS",
         isMoney: true,
-        link: "View all reviews",
+        link: "View All Reviews",
+        counter: resData,
         icon: (
           <ReviewsIcon
             className="icon"
@@ -45,7 +46,8 @@ const Widget = ({ type }) => {
     case "reservation":
       data = {
         title: "RESERVATIONS",
-        link: "View total Reservations",
+        link: "View All Reservations",
+        counter: resData,
         icon: (
           <EventSeatIcon
             className="icon"
@@ -57,7 +59,7 @@ const Widget = ({ type }) => {
     case "ranking":
       data = {
         title: "RANKING",
-        link: "See Restaurant Rankings",
+        link: "View Restaurant Rankings",
         icon: (
           <StarIcon
             className="icon"
@@ -78,16 +80,12 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{data.title}</span>
-        <span className="counter">256</span>
-        <span className="link">{data.link}</span>
+        <span className="counter">{data.counter}</span>
+        <Link style={{ textDecoration: "none" }} className="link">
+          {data.link}
+        </Link>
       </div>
-      <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          20 %
-        </div>
-        {data.icon}
-      </div>
+      <div className="right">{data.icon}</div>
     </div>
   );
 };

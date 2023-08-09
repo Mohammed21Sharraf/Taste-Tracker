@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Reservation } from "../models/reservationModel.js";
 import { Restaurant } from "../models/restaurantModel.js";
 
@@ -22,6 +23,10 @@ export const createReservation = async (req, res) => {
       time,
       date: day + " " + month + " " + year,
     });
+
+    console.log(reservation);
+    restaurant.numOfReservations += 1;
+    await restaurant.save({ validateBeforeSave: false });
 
     res.status(202).json({
       success: true,
@@ -71,9 +76,17 @@ export const deleteMyReservation = async (req, res) => {
   });
 };
 
-// Get total reservation of each month
+// Get total reservation of each month - Restaurant Owner
 export const monthlyReservations = async (req, res) => {
+  const restaurantName = await Restaurant.find({ user: req.user._id }).select(
+    "name"
+  );
+  //{ $match : { author : "dave" } }
+  console.log(restaurantName[0].name);
   const group = await Reservation.aggregate([
+    {
+      $match: { restaurantName: restaurantName[0].name },
+    },
     {
       $group: {
         _id: {
@@ -95,4 +108,30 @@ export const monthlyReservations = async (req, res) => {
     success: true,
     group,
   });
+};
+
+// Get latest reservations
+export const latestReservations = async (req, res) => {
+  try {
+    const restaurantId = await Restaurant.find({ user: req.user._id }).select(
+      "_id"
+    );
+
+    const reservations = await Reservation.find({
+      restaurant: restaurantId[0]._id,
+    })
+      .populate("user", "name")
+      .sort({ createdAt: -1 })
+      .limit(5);
+
+    res.status(200).json({
+      success: true,
+      reservations,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error,
+    });
+  }
 };

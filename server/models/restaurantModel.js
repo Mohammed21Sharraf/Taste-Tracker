@@ -51,6 +51,10 @@ const restaurantSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  numOfReservations: {
+    type: Number,
+    default: 0,
+  },
   reviews: [
     {
       user: {
@@ -89,30 +93,6 @@ const restaurantSchema = new mongoose.Schema({
       complains: {
         type: String,
         required: true,
-      }
-    },
-  ],
-
-  reservation: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      seatsBooked: {
-        type: Number,
-        required: [true, "Please enter the number of seats"],
-      },
-      time: {
-        type: Date,
-      },
-      day: {
-        type: Date,
       },
     },
   ],

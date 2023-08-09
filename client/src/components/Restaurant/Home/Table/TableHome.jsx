@@ -8,42 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const TableHome = () => {
-  const rows = [
-    {
-      id: 1,
-      name: "Tashsin Ashrafee",
-      comment: "Best Restaurant",
-      rating: 5,
-      reservation: 2,
-      reservationStatus: "Processing",
-    },
-    {
-      id: 2,
-      name: "Tashsin Ashrafee",
-      comment: "Best Restaurant",
-      rating: 5,
-      reservation: 2,
-      reservationStatus: "Processing",
-    },
-    {
-      id: 3,
-      name: "Tashsin Ashrafee",
-      comment: "Best Restaurant",
-      rating: 5,
-      reservation: 2,
-      reservationStatus: "Processing",
-    },
-    {
-      id: 4,
-      name: "Tashsin Ashrafee",
-      comment: "Best Restaurant",
-      rating: 5,
-      reservation: 2,
-      reservationStatus: "Processing",
-    },
-  ];
-
+const TableHome = ({ reservations }) => {
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -51,27 +16,30 @@ const TableHome = () => {
           <TableRow>
             <TableCell className="tableCell">Customer ID</TableCell>
             <TableCell className="tableCell">Name</TableCell>
-            <TableCell className="tableCell">Comment</TableCell>
-            <TableCell className="tableCell">Rating</TableCell>
-            <TableCell className="tableCell">Reservations</TableCell>
+            <TableCell className="tableCell">Seats Reserved</TableCell>
+            <TableCell className="tableCell">Time</TableCell>
+            <TableCell className="tableCell">Date</TableCell>
             <TableCell className="tableCell">Reservation Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className="tableCell">{row.id}</TableCell>
-              <TableCell className="tableCell">{row.name}</TableCell>
-              <TableCell className="tableCell">{row.comment}</TableCell>
-              <TableCell className="tableCell">{row.rating}</TableCell>
-              <TableCell className="tableCell">{row.reservation}</TableCell>
-              <TableCell className="tableCell">
-                <span className={`reservationStatus ${row.reservationStatus}`}>
-                  {row.reservationStatus}
-                </span>
-              </TableCell>
-            </TableRow>
-          ))}
+          {reservations &&
+            reservations.map((entry) => (
+              <TableRow key={entry._id}>
+                <TableCell className="tableCell">{entry.user._id}</TableCell>
+                <TableCell className="tableCell">{entry.user.name}</TableCell>
+                <TableCell className="tableCell">
+                  {entry.seatCapacity}
+                </TableCell>
+                <TableCell className="tableCell">{entry.time}</TableCell>
+                <TableCell className="tableCell">{entry.date}</TableCell>
+                <TableCell className="tableCell">
+                  <span className={`reservationStatus ${entry.status}`}>
+                    {entry.status}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

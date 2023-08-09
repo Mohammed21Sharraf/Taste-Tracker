@@ -11,15 +11,41 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Chart = () => {
-  const data = [
-    { name: "January", Reviews: 1200, Reservations: 500 },
-    { name: "February", Reviews: 2100, Reservations: 500 },
-    { name: "March", Reviews: 800, Reservations: 500 },
-    { name: "April", Reviews: 1600, Reservations: 500 },
-    { name: "May", Reviews: 900, Reservations: 500 },
-    { name: "June", Reviews: 1700, Reservations: 500 },
+const Chart = ({ monthlyReservations }) => {
+  let chart = [];
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
+
+  monthlyReservations.forEach((element) => {
+    const month = element._id.month;
+    const review = 0;
+    const reservation = element.total;
+    const data = {
+      name: months[month - 1],
+      res: reservation,
+      rev: review,
+    };
+
+    chart.push(data);
+  });
+
+  // const data = [
+  //   { name: "January", Reviews: 1200, Reservations: 500 },
+  //   { name: "February", Reviews: 2100, Reservations: 500 },
+  // ];
 
   return (
     <div className="chart">

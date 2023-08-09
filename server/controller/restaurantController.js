@@ -46,7 +46,8 @@ export const restaurantDetails = async (req, res) => {
 
   try {
     const details = await Restaurant.find({ user: id });
-    res.status(200).json(details);
+
+    res.status(200).json({ details });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -82,7 +83,7 @@ export const restaurantReviews = async (req, res) => {
   }
 };
 
-// Create User Review and Update Review  
+// Create User Review and Update Review
 export const createReview = async (req, res) => {
   const id = req.params.id;
   const { ratings, comments } = req.body;
@@ -95,13 +96,14 @@ export const createReview = async (req, res) => {
   };
   const restaurant = await Restaurant.findById(id);
 
-  const isReviewed = restaurant.reviews.find((rev)=> rev.user.toString() === req.user._id.toString());
+  const isReviewed = restaurant.reviews.find(
+    (rev) => rev.user.toString() === req.user._id.toString()
+  );
 
-  if(isReviewed){
+  if (isReviewed) {
     restaurant.reviews.forEach((rev) => {
-      if (rev.user.toString() === req.user._id.toString()){
-        (rev.rating = ratings),
-        (rev.comment = comments)
+      if (rev.user.toString() === req.user._id.toString()) {
+        (rev.rating = ratings), (rev.comment = comments);
       }
     });
   } else {
@@ -111,7 +113,7 @@ export const createReview = async (req, res) => {
 
   let total = 0;
   restaurant.reviews.forEach((review) => {
-    total += review.rating
+    total += review.rating;
   });
 
   restaurant.ratings = total / restaurant.numOfReviews;
@@ -124,8 +126,7 @@ export const createReview = async (req, res) => {
   });
 };
 
-
-// Delete  Restaurant Review 
+// Delete  Restaurant Review
 export const deleteReview = async (req, res) => {
   const id = req.query.RestaurantID;
 
@@ -137,10 +138,9 @@ export const deleteReview = async (req, res) => {
     (rev) => rev._id.toString() !== reviewID
   );
 
-
   let total = 0;
   restaurant.reviews.forEach((review) => {
-    total += review.rating
+    total += review.rating;
   });
 
   const ratings = total / reviews.length;
@@ -148,17 +148,13 @@ export const deleteReview = async (req, res) => {
   const numOfReviews = reviews.length;
 
   // console.log(reviews);
-   
+
   await Restaurant.findByIdAndUpdate(
     id,
     {
       reviews,
-      numOfReviews, 
-      ratings
-    }, {
-    new: true,
-    useFindAndModify: false
-  });
+      numOfReviews,
+      ratings,
     },
     {
       new: true,
@@ -170,7 +166,6 @@ export const deleteReview = async (req, res) => {
     success: true,
   });
 };
-
 
 // Get all restaurants
 export const getAllRestaurants = async (req, res) => {
@@ -233,16 +228,16 @@ export const getTopRestaurant = async (req, res) => {
   }
 };
 
-// post complain 
+// post complain
 export const createComplain = async (req, res) => {
   try {
     const id = req.params.id;
-    const {complain} = req.body;
+    const { complain } = req.body;
     const comp = {
       user: req.user._id,
       name: req.user.name,
-      complains: complain
-    }
+      complains: complain,
+    };
 
     const restaurant = await Restaurant.findById(id);
 
@@ -253,18 +248,17 @@ export const createComplain = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      restaurant
-    })
-
+      restaurant,
+    });
   } catch (error) {
     res.status(404).json({
-      success:false,
-      mesaage:error
-    })
+      success: false,
+      mesaage: error,
+    });
   }
-}
+};
 
-// view all complains 
+// view all complains
 export const restaurantComplaints = async (req, res) => {
   const id = req.params.id;
 
@@ -276,42 +270,43 @@ export const restaurantComplaints = async (req, res) => {
   }
 };
 
-// delete a complain 
+// delete a complain
 export const deleteComplain = async (req, res) => {
   try {
     const id = req.query.RestaurantID;
 
-    const {complainID}  = req.body;
+    const { complainID } = req.body;
 
     const restaurant = await Restaurant.findById(id);
 
-    const complaints = restaurant.complaints.filter((comp) => comp._id.toString() !== complainID)
+    const complaints = restaurant.complaints.filter(
+      (comp) => comp._id.toString() !== complainID
+    );
     console.log(complaints);
 
     await Restaurant.findByIdAndUpdate(
       id,
       {
-      complaints
+        complaints,
       },
       {
-      new: true,
-      useFindAndModify: false
-    });
+        new: true,
+        useFindAndModify: false,
+      }
+    );
     res.status(200).json({
       success: true,
-      complaints
+      complaints,
     });
-
   } catch (error) {
     res.status(404).json({
-      success:false,
-      message: error
-    })
+      success: false,
+      message: error,
+    });
   }
-}
+};
 
-
-// ranking system 
+// ranking system
 export const getRanksOfRestaurants = async (req, res) => {
   try {
     const restaurants = await Restaurant.find().sort({ ratings: -1 }).limit(10);
