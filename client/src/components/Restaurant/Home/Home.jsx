@@ -61,9 +61,9 @@ const Home = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart
+          {/* <Chart
             monthlyReservations={monthlyReservations && monthlyReservations}
-          />
+          /> */}
         </div>
         <div className="listContainer">
           <div className="listTitle">Latest Reservations</div>
