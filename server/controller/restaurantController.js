@@ -40,47 +40,7 @@ export const createRestaurant = async (req, res) => {
   }
 };
 
-// Get all reservation of a specific restaurant - Restaurant Owner
-export const getRestaurantReservations = async (req, res) => {
-  try {
-    const restaurant = await Restaurant.find({ user: req.user._id });
-    const reservation = restaurant[0].reservation;
-    res.status(200).json({
-      success: true,
-      reservation,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error,
-    });
-  }
-};
-
-// Create Reservation - User
-export const createReservation = async (req, res) => {
-  const { seatsBooked } = req.body;
-  const reservation = {
-    user: req.user._id,
-    name: req.user.name,
-    seatsBooked: seatsBooked,
-    time: Date.now(),
-    day: Date.now(),
-  };
-
-  const restaurant = await Restaurant.find();
-
-  restaurant[0].reservation.push(reservation);
-
-  await restaurant[0].save({ validateBeforeSave: false });
-
-  res.status(200).json({
-    success: true,
-    restaurant,
-  });
-};
-
-// Get Restaurant Details
+// Get Restaurant Details - Restaurant Owner
 export const restaurantDetails = async (req, res) => {
   const id = req.user._id;
 
@@ -92,8 +52,7 @@ export const restaurantDetails = async (req, res) => {
   }
 };
 
-
-// Update Restaurant profile
+// Update Restaurant profile - Restaurant Owner
 export const restaurantUpdate = async (req, res) => {
   const id = req.user._id;
   try {

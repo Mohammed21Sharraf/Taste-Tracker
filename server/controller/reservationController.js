@@ -35,12 +35,6 @@ export const createReservation = async (req, res) => {
   }
 };
 
-// async function updateSeatCapacity(id, seats) {
-//     const restaurant = await Restaurant.findById(req.param.id);
-//     restaurant.seatCapacity -= seats;
-//     await restaurant.save({validateBeforeSave: false});
-// }
-
 // View Reservation of a specific user
 export const myReservations = async (req, res) => {
   try {
@@ -74,5 +68,31 @@ export const deleteMyReservation = async (req, res) => {
   res.status(200).json({
     success: true,
     message: "Reservation deleted",
+  });
+};
+
+// Get total reservation of each month
+export const monthlyReservations = async (req, res) => {
+  const group = await Reservation.aggregate([
+    {
+      $group: {
+        _id: {
+          year: { $year: "$createdAt" },
+          month: { $month: "$createdAt" },
+        },
+        total: { $sum: 1 },
+      },
+    },
+    {
+      $sort: {
+        "_id.year": 1,
+        "_id.month": 1,
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    success: true,
+    group,
   });
 };
