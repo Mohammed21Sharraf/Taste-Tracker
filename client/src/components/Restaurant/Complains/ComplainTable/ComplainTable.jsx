@@ -9,6 +9,7 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 const RankTable = () => {
 
     const [complaintsData, setComplaintData] = useState([]);
+    // const [complainID, setComplainID] = useState("");
     const [updateUI, setUpdateUI] = useState(false);
     const id = useParams();
     // console.log(id.id);
@@ -21,10 +22,21 @@ const RankTable = () => {
             .then((res) => {
                 setComplaintData(res.data);
                 console.log(res.data);
+                // setUpdateUI((prevState)=>!prevState)
             });
     }, [updateUI, id]);
 
-    console.log({ complaintsData });
+    const deleteComplain = (ID)=> {
+        console.log(ID);
+        axios.delete(`${baseURL}/api/v1/restaurant/delete-complain/${id.id}`,{data: {complainID: ID}}, {
+            withCredentials: true,
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+    }
+
+    // console.log({ complaintsData });
 
     const columns = [
         { field: 'id', headerName: 'Complain Id', width: 200 },
@@ -34,10 +46,10 @@ const RankTable = () => {
             field: "action",
             headerName: "Action",
             width: 200,
-            renderCell: () => {
+            renderCell: (params) => {
                 return (
-                    <div>
-                        <DeleteRoundedIcon />
+                    <div className='delete-icon'>
+                        <DeleteRoundedIcon onClick={deleteComplain(params.row.id)} />
                     </div>
                 );
             },

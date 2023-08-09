@@ -10,6 +10,7 @@ import { baseURL } from "../../../../api";
 import { useParams } from "react-router-dom";
 import img from "../../../../img/burger.png";
 import ReservationModal from "../ReservationModal/ReservationModal";
+import ComplainModal from "../ComplainModal/ComplainModal";
 
 const Reviews = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -82,6 +83,19 @@ const Reviews = () => {
             </button>
           </div>
         </div>
+        <div className="Reviews-buttons">
+          <div className="Reviews-submit">
+            <div className="Reviews-submit-text">
+              File a Complaint!
+            </div>
+            <button
+              className="Reviews-submit-button"
+              onClick={() => setModalOpen(true)}
+            >
+              Submit Complaint!
+            </button>
+          </div>
+          </div>
         <hr className="Reviews-hr" />
         <div className="Reviews-reviews">
           <h2 className="Reviews-reviews-title">Reviews</h2>
@@ -110,6 +124,12 @@ const Reviews = () => {
         <ReservationModal
           modalOpen={resModalOpen}
           setModalOpen={setResModalOpen}
+        />
+      </div>
+      <div>
+        <ComplainModal
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
         />
       </div>
     </div>

@@ -3,14 +3,14 @@ import {
   createReservation,
   createRestaurant,
   restaurantDetails,
-  restaurantReviews,
+  // restaurantReviews,
   restaurantUpdate,
   getRestaurantReservations,
-  createReview,
+  // createReview,
   getRestaurantDetails,
   getAllRestaurants,
   getTopRestaurant,
-  deleteReview,
+  // deleteReview,
   createComplain,
   restaurantComplaints,
   deleteComplain,
@@ -34,11 +34,11 @@ router.route("/restaurants").get(getAllRestaurants);
 router.route("/restaurants/top").get(getTopRestaurant);
 
 // Restaurant Reviews 
-router
-  .route("/restaurant/reviews/:id")
-  .get(isAuthenticatedUser, restaurantReviews);
-router.route("/restaurant/give_review/:id").put(isAuthenticatedUser, createReview);
-router.route("/restaurant/delete-review").delete(isAuthenticatedUser, deleteReview);
+// router
+//   .route("/restaurant/reviews/:id")
+//   .get(isAuthenticatedUser, restaurantReviews);
+// router.route("/restaurant/give_review/:id").put(isAuthenticatedUser, createReview);
+// router.route("/restaurant/delete-review").delete(isAuthenticatedUser, deleteReview);
 
 // Restaurant complaints
 router.route("/restaurant/complain/:id").post(isAuthenticatedUser, createComplain);
