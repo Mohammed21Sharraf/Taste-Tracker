@@ -11,7 +11,7 @@ import {
   // deleteReview,
   createComplain,
   restaurantComplaints,
-  deleteComplain,
+  // deleteComplain,
   getRanksOfRestaurants,
 } from "../controller/restaurantController.js";
 import { isAuthenticatedUser } from "../middleware/auth.js";
@@ -39,8 +39,9 @@ router.route("/restaurants/top").get(getTopRestaurant);
 // Restaurant complaints
 router.route("/restaurant/complain/:id").post(isAuthenticatedUser, createComplain);
 router.route("/restaurant/all-complains/:id").get(isAuthenticatedUser, restaurantComplaints);
-router.route("/restaurant/delete-complain").delete(isAuthenticatedUser, deleteComplain);
+// router.route("/restaurant/delete-complain").delete(isAuthenticatedUser, deleteComplain);
 
-router.route("/restaurant/rank").get(isAuthenticatedUser, getRanksOfRestaurants);
+router.route("/restaurants/rankings").get(isAuthenticatedUser, getRanksOfRestaurants);
+
 
 export default router;

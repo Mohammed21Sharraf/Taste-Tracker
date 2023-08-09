@@ -2,6 +2,7 @@ import express from "express";
 import {
   createReservation,
   deleteMyReservation,
+  latestReservations,
   monthlyReservations,
   myReservations,
 } from "../controller/reservationController.js";
@@ -16,6 +17,11 @@ router
   .delete(isAuthenticatedUser, deleteMyReservation);
 
 // Restaurant Owner routes
-router.route("/monthlyreservations").get(monthlyReservations);
+router
+  .route("/monthlyreservations")
+  .get(isAuthenticatedUser, monthlyReservations);
+router
+  .route("/latestreservations")
+  .get(isAuthenticatedUser, latestReservations);
 
 export default router;

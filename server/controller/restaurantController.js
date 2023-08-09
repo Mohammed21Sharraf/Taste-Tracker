@@ -43,10 +43,11 @@ export const createRestaurant = async (req, res) => {
 // Get Restaurant Details - Restaurant Owner
 export const restaurantDetails = async (req, res) => {
   const id = req.user._id;
-
+  console.log(id);
   try {
     const details = await Restaurant.find({ user: id });
-    res.status(200).json(details);
+    console.log(details);
+    res.status(200).json({ details });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -228,16 +229,16 @@ export const getTopRestaurant = async (req, res) => {
   }
 };
 
-// post complain 
+// post complain
 export const createComplain = async (req, res) => {
   try {
     const id = req.params.id;
-    const {complain} = req.body;
+    const { complain } = req.body;
     const comp = {
       user: req.user._id,
       name: req.user.name,
-      complains: complain
-    }
+      complains: complain,
+    };
 
     const restaurant = await Restaurant.findById(id);
 
@@ -248,18 +249,17 @@ export const createComplain = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      restaurant
-    })
-
+      restaurant,
+    });
   } catch (error) {
     res.status(404).json({
-      success:false,
-      mesaage:error
-    })
+      success: false,
+      mesaage: error,
+    });
   }
-}
+};
 
-// view all complains 
+// view all complains
 export const restaurantComplaints = async (req, res) => {
   const id = req.params.id;
 
@@ -271,8 +271,8 @@ export const restaurantComplaints = async (req, res) => {
   }
 };
 
-// delete a complain 
-export const deleteComplain = async (req, res) => {
+// delete a complain
+// export const deleteComplain = async (req, res) => {
 //   try {
 //     const id = req.params.id;
 
@@ -304,14 +304,14 @@ export const deleteComplain = async (req, res) => {
 //     })
 //   }
 
-}
+// }
 
 
-// ranking system 
+// ranking system
+
 export const getRanksOfRestaurants = async (req, res) => {
   try {
-    const restaurants = await Restaurant.find({}).exec()
-    console.log(restaurants);
+    const restaurants = await Restaurant.find().sort({ ratings: -1 }).limit(10);
     res.status(200).json({
       success: true,
       restaurants,

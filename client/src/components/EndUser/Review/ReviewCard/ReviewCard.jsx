@@ -19,7 +19,7 @@ function ReviewCard({ id, reviews }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="review-card" elevation={3}>
       <CardMedia
         sx={{ height: 140 }}
         image={img} />
