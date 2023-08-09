@@ -310,7 +310,8 @@ export const deleteComplain = async (req, res) => {
 // ranking system 
 export const getRanksOfRestaurants = async (req, res) => {
   try {
-    const restaurants = await Restaurant.find().sort({ ratings: -1 }).limit(10);
+    const restaurants = await Restaurant.find({}).exec()
+    console.log(restaurants);
     res.status(200).json({
       success: true,
       restaurants,

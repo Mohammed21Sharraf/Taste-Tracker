@@ -12,6 +12,7 @@ import {
   createComplain,
   restaurantComplaints,
   deleteComplain,
+  getRanksOfRestaurants,
 } from "../controller/restaurantController.js";
 import { isAuthenticatedUser } from "../middleware/auth.js";
 
@@ -40,5 +41,6 @@ router.route("/restaurant/complain/:id").post(isAuthenticatedUser, createComplai
 router.route("/restaurant/all-complains/:id").get(isAuthenticatedUser, restaurantComplaints);
 router.route("/restaurant/delete-complain").delete(isAuthenticatedUser, deleteComplain);
 
+router.route("/restaurant/rank").get(isAuthenticatedUser, getRanksOfRestaurants);
 
 export default router;
