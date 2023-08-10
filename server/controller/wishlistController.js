@@ -67,6 +67,7 @@ export const deleteWishlist = async (req, res) => {
   }
 };
 
+// Update preferred Food
 export const updatePrefferedFood = async (req, res) => {
   try {
     const { preferredFood } = req.body;

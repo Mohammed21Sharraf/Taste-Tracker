@@ -43,10 +43,9 @@ export const createRestaurant = async (req, res) => {
 // Get Restaurant Details - Restaurant Owner
 export const restaurantDetails = async (req, res) => {
   const id = req.user._id;
-  console.log(id);
+
   try {
     const details = await Restaurant.find({ user: id });
-    console.log(details);
     res.status(200).json({ details });
   } catch (error) {
     res.status(500).json(error);
@@ -83,7 +82,7 @@ export const restaurantUpdate = async (req, res) => {
 //   }
 // };
 
-// Create User Review and Update Review  
+// Create User Review and Update Review
 
 // export const createReview = async (req, res) => {
 //   const id = req.params.id;
@@ -126,9 +125,7 @@ export const restaurantUpdate = async (req, res) => {
 //   });
 // };
 
-
-
-// Delete  Restaurant Review 
+// Delete  Restaurant Review
 // export const deleteReview = async (req, res) => {
 //   const id = req.query.RestaurantID;
 
@@ -137,7 +134,6 @@ export const restaurantUpdate = async (req, res) => {
 //   const restaurant = await Restaurant.findById(id);
 
 //   const reviews = restaurant.reviews.filter((rev) => rev._id.toString() !== reviewID)
-
 
 //   let total = 0;
 //   restaurant.reviews.forEach((review) => {
@@ -149,12 +145,12 @@ export const restaurantUpdate = async (req, res) => {
 //   const numOfReviews = reviews.length;
 
 //   // console.log(reviews);
-   
+
 //   await Restaurant.findByIdAndUpdate(
 //     id,
 //     {
 //       reviews,
-//       numOfReviews, 
+//       numOfReviews,
 //       ratings
 //     }, {
 //     new: true,
@@ -166,7 +162,6 @@ export const restaurantUpdate = async (req, res) => {
 
 //   })
 // }
-
 
 // Get all restaurants
 export const getAllRestaurants = async (req, res) => {
@@ -305,7 +300,6 @@ export const restaurantComplaints = async (req, res) => {
 //   }
 
 // }
-
 
 // ranking system
 

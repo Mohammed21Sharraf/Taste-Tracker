@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
 import { Reservation } from "../models/reservationModel.js";
 import { Restaurant } from "../models/restaurantModel.js";
+import { sendEmail } from "../utils/sendEmail.js";
 
 // Create Reservation for a user
 export const createReservation = async (req, res) => {
@@ -110,7 +110,7 @@ export const monthlyReservations = async (req, res) => {
   });
 };
 
-// Get latest reservations
+// Get latest reservations - Restaurant Owner
 export const latestReservations = async (req, res) => {
   try {
     const restaurantId = await Restaurant.find({ user: req.user._id }).select(
@@ -122,7 +122,7 @@ export const latestReservations = async (req, res) => {
     })
       .populate("user", "name")
       .sort({ createdAt: -1 })
-      .limit(5);
+      .limit(3);
 
     res.status(200).json({
       success: true,
@@ -134,4 +134,52 @@ export const latestReservations = async (req, res) => {
       error,
     });
   }
+};
+
+// Get all reservations of a restaurant - Restaurant Owner
+export const getReservations = async (req, res) => {
+  const restaurant = await Restaurant.find({ user: req.user._id }).select(
+    "name"
+  );
+
+  const resName = restaurant[0].name; // The Bear
+
+  const reservations = await Reservation.find({ restaurantName: resName })
+    .sort({ createdAt: -1 })
+    .populate("user", "name");
+
+  res.status(200).json({
+    success: true,
+    reservations,
+  });
+};
+
+// Update Reservation status - Restaurant Owner
+export const updateReservationStatus = async (req, res) => {
+  const { resStatus } = req.body;
+  let msg;
+
+  const reservation = await Reservation.findByIdAndUpdate(
+    { _id: req.params.id },
+    { $set: { status: resStatus } },
+    { new: true, runValidators: true }
+  ).populate("user", "email");
+
+  if (resStatus === "Approved") {
+    msg = `Your reservation at ${reservation.restaurantName} is Approved. \n\n Please arrive at the restaurant 15mins early.`;
+  } else {
+    msg = `Your reservation at ${reservation.restaurantName} is Rejected. \n\n Please try again after a few days.`;
+  }
+
+  await sendEmail({
+    email: reservation.user.email,
+    subject: `Reservation Status - ${reservation.restaurantName}`,
+    msg,
+  });
+
+  res.status(202).json({
+    success: true,
+    reservation,
+    message: "Email sent",
+  });
 };
