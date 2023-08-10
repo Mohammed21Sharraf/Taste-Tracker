@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route("/reviews/:id").post(isAuthenticatedUser, createReview);
 router.route("/review/delete/:id").delete(isAuthenticatedUser, deleteReview);
-router.route("/review/update/:id").put(isAuthenticatedUser, updateReview);
+router.route("/review/update/:id").post(isAuthenticatedUser, updateReview);
 router.route("/review/details/:id").get(isAuthenticatedUser, getReview);
 
 export default router;

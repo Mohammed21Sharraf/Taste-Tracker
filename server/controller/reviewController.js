@@ -44,7 +44,10 @@ export const createReview = async (req, res) => {
 export const deleteReview = async (req, res) => {
     try {
         const review = await Review.findById(req.params.id);
-        if (review){
+        // console.log(review);
+        // console.log(req.user._id);
+        if (review.user.toString() === req.user._id.toString()){
+            // console.log(req.user._id);
             const restaurantID = review.restaurant.toString();
             const restaurant = await Restaurant.findById(restaurantID);
     
