@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Modal, useMantineTheme } from '@mantine/core';
-import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
+// import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import axios from "axios";
 import { baseURL } from '../../../../api'; 
 import { useParams } from 'react-router-dom';
@@ -15,7 +15,7 @@ function ReviewModal({ modalOpen, setModalOpen}) {
 
     //Post Review
     const postReview = () => {
-        axios.post(`${baseURL}/api/v1/restaurant/give_review/${id.id}`, { comments: comments, ratings: ratings }, { withCredentials: true })
+        axios.post(`${baseURL}/api/v1/reviews/${id.id}`, { comments: comments, ratings: ratings }, { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
             })
@@ -51,10 +51,10 @@ function ReviewModal({ modalOpen, setModalOpen}) {
                         required
                         onChange={(e)=>setRating(e.target.value)}
                     />
-                    <label>Upload a picture: <DriveFolderUploadOutlinedIcon className='icon' /></label>
+                    {/* <label>Upload a picture: </label>
                     <input
                         type="file"
-                    />
+                    /> */}
                 </div>
 
                 <button className='submit-review' type='submit' onClick={postReview}>Submit</button>

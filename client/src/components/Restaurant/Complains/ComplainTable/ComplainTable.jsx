@@ -6,7 +6,7 @@ import { baseURL } from '../../../../api';
 import { useParams } from 'react-router-dom';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-const RankTable = () => {
+const ComplainTable = () => {
 
     const [complaintsData, setComplaintData] = useState([]);
     // const [complainID, setComplainID] = useState("");
@@ -87,4 +87,4 @@ const RankTable = () => {
     )
 }
 
-export default RankTable
+export default ComplainTable

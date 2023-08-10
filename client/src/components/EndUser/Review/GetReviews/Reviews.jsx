@@ -13,6 +13,7 @@ import ComplainModal from "../ComplainModal/ComplainModal";
 
 const Reviews = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [resModalOpen, setResModalOpen] = useState(false);
   const [reviewData, setReviewData] = useState([]);
   const [resData, setResData] = useState([]);
@@ -25,14 +26,50 @@ const Reviews = () => {
     });
 
     axios
-      .get(`${baseURL}/api/v1/restaurant/reviews/${id.id}`, {
+      .get(`${baseURL}/api/v1/review/details/${id.id}`, {
         withCredentials: true,
       })
       .then((res) => {
-        setReviewData(res.data);
-        console.log(res.data);
+        setReviewData(res.data.review);
+        console.log(res.data.review);
       });
   }, [updateUI, id]);
+
+  const editReview = (id, comments, ratings) => {
+    console.log(comments , ratings);
+    axios
+      .post(
+        `${baseURL}/api/v1/review/update/${id}`,
+        {comment: comments,
+          rating: ratings
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setUpdateUI(true);
+      })
+      // .catch((error) => {
+      //   console.error("Error:", error);
+      // });
+  };
+
+  const deleteReview = (id) => {
+    console.log(id);
+    axios
+      .delete(`${baseURL}/api/v1/review/delete/${id}`,
+       {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setUpdateUI((prev)=>!prev);
+        console.log("Deleted Successfully");
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  };
 
   return (
     <div className="Reviews-container">
@@ -69,7 +106,7 @@ const Reviews = () => {
           </div>
           <button
             className="Reviews-submit-button"
-            onClick={() => setModalOpen(true)}
+            onClick={() => setReviewModalOpen(true)}
           >
             Submit Review
           </button>
@@ -111,6 +148,8 @@ const Reviews = () => {
                 id={review._id}
                 reviews={review}
                 setUpdateUI={setUpdateUI}
+                onUpdate={editReview}
+                onDelete={deleteReview}
               />
             </Grid>
           ))}
@@ -118,7 +157,7 @@ const Reviews = () => {
       </div>
       
       <div>
-        <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <ReviewModal modalOpen={reviewModalOpen} setModalOpen={setReviewModalOpen} />
       </div>
       <div>
         <ReservationModal
