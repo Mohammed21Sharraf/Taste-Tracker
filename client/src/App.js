@@ -16,6 +16,7 @@ import Wishlist from "./components/EndUser/Wishlist/Wishlist";
 import Reservations from "./components/EndUser/Reservations/Reservations";
 import UserReviews from "./components/EndUser/UserReviews/UserReviews";
 import Complains from "./components/Restaurant/Complains/Complains"
+import Offers from "./components/EndUser/Offers/Offers";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route exact path="/reviews" Component={UserReviews} />
           <Route exact path="/wishlist" Component={Wishlist} />
           <Route exact path="/reservations" Component={Reservations} />
+          <Route exact path="/Offers" Component={Offers} />
         </Routes>
       </Router>
     </Suspense>
