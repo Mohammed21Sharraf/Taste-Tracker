@@ -1,0 +1,23 @@
+body {
+    background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+  }
+  
+.ribbon {
+position: absolute;
+top: 0;
+left: 0;
+background-color: #ff9900;
+color: #fff;
+padding: 0.3rem 1rem;
+transform: rotate(-45deg);
+transform-origin: left top;
+  }
+  
+  .ribbon-text {
+font-size: 0.8rem;
+  }
+  
+  
+  
+ 
+  

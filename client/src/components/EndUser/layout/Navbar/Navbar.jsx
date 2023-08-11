@@ -52,6 +52,10 @@ const Navbar = () => {
     }
   };
 
+  const handleSignOut = () => {
+    //code likhoo
+  };
+
   return (
     <Fragment>
       {nav ? (
@@ -111,8 +115,8 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="item">
-              <Link to="/restaurants">
-                <span>Restaurants</span>
+              <Link to="/offers">
+                <span>Offers</span>
               </Link>
             </div>
             <div className="item">
@@ -130,6 +134,13 @@ const Navbar = () => {
                 <span>Your Reviews</span>
               </Link>
             </div>
+
+            <div className="item">
+            <button className="signout-button" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+
           </div>
         </nav>
       )}

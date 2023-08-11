@@ -15,6 +15,10 @@ const UserNavbar = () => {
     }
   };
 
+  const handleSignOut = () => {
+    //code likhoo
+  };
+
   return (
     <nav className="UserNavbar">
       <div className="logo-item">
@@ -37,8 +41,8 @@ const UserNavbar = () => {
           </Link>
         </div>
         <div className="item">
-          <Link to="/userpage" className="item-link">
-            <span>Restaurants</span>
+          <Link to="/offers" className="item-link">
+            <span>Offers</span>
           </Link>
         </div>
         <div className="item">
@@ -55,7 +59,14 @@ const UserNavbar = () => {
               <Link to="/reviews" className="item-link">
                 <span>Your Reviews</span>
               </Link>
-            </div>
+        </div>
+
+        <div className="item">
+          <button className="signout-button" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+
       </div>
     </nav>
   );
