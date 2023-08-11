@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import * as api from "../../api"; 
 
 // Create Restaurant - Restaurant Owner
 export const createRestaurant = createAsyncThunk(
@@ -19,21 +18,23 @@ export const createRestaurant = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   }
-)
+);
 
-// Update Restaurant profile 
-// export const updateRestaurantProfile = createAsyncThunk(
-//   "restaurant/updateProfile",
-//   async ({id, updatedData, navigate}, {rejectWithValue}) => {
-//     try {
-//       const response = await api.updateProfile(updatedData, id);
-//       navigate("/restaurant/profile");
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// )
+// Get Restaurant Details - Restaurant Owner
+export const getRestaurantDetails = createAsyncThunk(
+  "restaurant/getRestaurantDetails",
+  async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:4000/api/v1/restaurant/details",
+        { withCredentials: true }
+      );
+      return await data.details;
+    } catch (error) {
+      throw new Error("Details not loaded");
+    }
+  }
+);
 
 const initialState = {
   loading: true,
@@ -60,27 +61,18 @@ const restaurantSlice = createSlice({
       .addCase(createRestaurant.rejected, (state) => {
         state.restaurant = null;
       })
-      // Update Restaurant Profile 
-    //   .addCase(updateRestaurantProfile.pending, (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase(updateRestaurantProfile.fulfilled, (state, action) => {
-    //     state.loading = false;
-    //     console.log("action",action);
-    //     const {
-    //       arg: {id},
-    //     } = action.meta;
-    //     if (id) {
-    //       state.userRestaurant = state.userRestaurant.map((item) => {
-    //         item._id === id ? action.payload : item
-    //       });
-    //     };
-    //   })
-    //   .addCase(updateRestaurantProfile.rejected, (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload.message;
-    //   })
-    }
+      // Get Restaurant Details
+      .addCase(getRestaurantDetails.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getRestaurantDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.restaurant = action.payload;
+      })
+      .addCase(getRestaurantDetails.rejected, (state) => {
+        state.restaurant = null;
+      });
+  },
 });
 
 export default restaurantSlice.reducer;
