@@ -103,8 +103,9 @@ const Navbar = () => {
             </span>
           </div>
           <form
-            className={`search-bar-container ${isNavbarOpaque ? "maroon-text" : ""
-              }`}
+            className={`search-bar-container ${
+              isNavbarOpaque ? "maroon-text" : ""
+            }`}
             onSubmit={searchSubmitHandler}
           >
             <div className="search-bar">
@@ -142,11 +143,6 @@ const Navbar = () => {
                 Sign Out
               </button>
             </div>
-              <button className="signout-button" onClick={handleSignOut}>
-                Sign Out
-              </button>
-            </div>
-
           </div>
         </nav>
       )}
