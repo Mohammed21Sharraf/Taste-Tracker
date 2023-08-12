@@ -21,8 +21,8 @@ const OfferCards = ({ offer }) => {
           <img src={offer.image} alt="Offer" className="card-img-top" />
         </div>
         <div className="card-body text-dark">
-          <h4 className="card-title">{offer.title}</h4>
-          <p className="card-text text-secondary">{offer.description}</p>
+          <h4 className="card-title">{offer.name}</h4>
+          <p className="card-text text-secondary">{offer.offer}</p>
 
           <button className="explore-button" onClick={handleClick}>
             Explore

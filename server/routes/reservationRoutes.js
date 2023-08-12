@@ -4,7 +4,7 @@ import {
   deleteMyReservation,
   getReservations,
   latestReservations,
-  monthlyReservations,
+  // monthlyReservations,
   myReservations,
   updateReservationStatus,
 } from "../controller/reservationController.js";
@@ -19,9 +19,9 @@ router
   .delete(isAuthenticatedUser, deleteMyReservation);
 
 // Restaurant Owner routes
-router
-  .route("/monthlyreservations")
-  .get(isAuthenticatedUser, monthlyReservations);
+// router
+//   .route("/monthlyreservations")
+//   .get(isAuthenticatedUser, monthlyReservations);
 router
   .route("/latestreservations")
   .get(isAuthenticatedUser, latestReservations);
