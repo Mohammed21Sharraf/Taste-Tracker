@@ -1,10 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Navbar.scss";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loadUser } from "../../../../features/user/userSlice";
 
 const Navbar = () => {
   const [isNavbarOpaque, setNavbarOpaque] = useState(false);
   const pathname = window.location.pathname;
+  const dispatch = useDispatch();
   let nav = true;
 
   if (pathname === "/homepage") {
@@ -53,7 +57,12 @@ const Navbar = () => {
   };
 
   const handleSignOut = () => {
-    //code likhoo
+    axios
+      .get("http://localhost:4000/api/v1/logout", { withCredentials: true })
+      .then(() => {
+        dispatch(loadUser());
+        navigate("/homepage");
+      });
   };
 
   return (
@@ -80,7 +89,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="item">
-              <Link to="/signin">
+              <Link to="/login">
                 <span> Sign In </span>
               </Link>
             </div>
@@ -130,17 +139,10 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="item">
-              <Link to="/reviews" className="item-link">
-                <span>Your Reviews</span>
-              </Link>
+              <button className="signout-button" onClick={handleSignOut}>
+                Sign Out
+              </button>
             </div>
-
-            <div className="item">
-            <button className="signout-button" onClick={handleSignOut}>
-            Sign Out
-          </button>
-        </div>
-
           </div>
         </nav>
       )}
