@@ -129,3 +129,45 @@
   margin-bottom: 5px;
 }
 }
+.sort-buttons {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sort-button {
+  padding: 5px 10px;
+  background-color: white;
+  border: 2px solid #4c0f1e;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: #4c0f1e;
+}
+
+.sort-button:hover {
+  background-color: #4c0f1e;
+  color: white;
+}
+
+.sort-button.best-reviews {
+  border-color: #4c0f1e;
+  color: #4c0f1e;
+}
+
+.sort-button.best-reviews:hover {
+  background-color: #4c0f1e;
+  color: white;
+}
+
+
+.sort-button.worst-reviews {
+  border-color: #4c0f1e;
+  color: #4c0f1e;
+}
+
+.sort-button.worst-reviews:hover {
+  background-color: #4c0f1e;
+  color: white;
+}

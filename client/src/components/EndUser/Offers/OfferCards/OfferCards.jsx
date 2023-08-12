@@ -18,19 +18,18 @@ const OfferCards = ({ offer }) => {
       </div>
       <div className="card text-center shadow">
         <div className="overflow">
-          <img src={offer.image} alt="Offer" className="card-img-top" />
+          <img src={offer.logo} alt="Offer" className="card-img-top" />
         </div>
         <div className="card-body text-dark">
           <h4 className="card-title">{offer.name}</h4>
           <p className="card-text text-secondary">{offer.offer}</p>
 
-          <button className="explore-button" onClick={handleClick}>
+          <a href={`reviews/` + offer._id}>
+          <button className="explore-button">
             Explore
           </button>
+          </a>
 
-          <button className="heart-button" onClick={handleClick}>
-            <span className="heart-icon">&#9829;</span>
-          </button>
         </div>
       </div>
     </div>

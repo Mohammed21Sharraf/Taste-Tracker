@@ -36,7 +36,7 @@ const UserNavbar = () => {
       </form>
       <div className="items">
         <div className="item">
-          <Link to="/homepage" className="item-link">
+          <Link to="/" className="item-link">
             <span>Home</span>
           </Link>
         </div>
@@ -54,11 +54,6 @@ const UserNavbar = () => {
           <Link to="/reservations" className="item-link">
             <span>Reservations</span>
           </Link>
-        </div>
-        <div className="item">
-              <Link to="/reviews" className="item-link">
-                <span>Your Reviews</span>
-              </Link>
         </div>
 
         <div className="item">

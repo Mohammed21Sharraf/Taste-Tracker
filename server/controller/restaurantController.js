@@ -229,7 +229,7 @@ export const getRanksOfRestaurants = async (req, res) => {
 // get offer 
 export const getOffers = async (req, res) => {
   try {
-    const restaurant = await Restaurant.find({},{"name":1, "offer":1});
+    const restaurant = await Restaurant.find({},{"name":1, "offer":1, "logo":1});
     const offerredRes = []
     const newRes = restaurant.filter((res) => {
       if (res.offer !== undefined) {

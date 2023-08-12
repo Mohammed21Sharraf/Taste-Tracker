@@ -35,6 +35,29 @@ const Reviews = () => {
       });
   }, [updateUI, id]);
 
+  const bestReviews = () => {
+    axios
+      .get(`${baseURL}/api/v1/review/highest-rating/${id.id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setReviewData(res.data.review);
+        console.log(res.data.review);
+      });
+  };
+
+  const worstReviews = () => {
+    axios
+      .get(`${baseURL}/api/v1/review/worst-rating/${id.id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setReviewData(res.data.review);
+        console.log(res.data.review);
+      });
+  };
+  
+
   const editReview = (id, comments, ratings) => {
     console.log(comments , ratings);
     axios
@@ -91,11 +114,15 @@ const Reviews = () => {
           <h4 className="Reviews-category-title">
             Average Rating: 
           </h4>
-          <p>{resData.rating}</p>
+          <p>{resData.ratings}</p>
+          <h4 className="Reviews-category-title">
+            Offers: 
+          </h4>
+          <p>{resData.offer}</p>
         </div>
 
         <div className="Reviews-image-container">
-          <img src={img} alt="Restaurant" />
+          <img src={resData.logo} alt="Restaurant" />
         </div>
         </div>
 
@@ -136,6 +163,14 @@ const Reviews = () => {
       </div>
       
       <h2 className="Reviews-reviews-title">Reviews</h2>
+      <div className="sort-buttons">
+        <button className="sort-button best-reviews" onClick={bestReviews}>
+          Sort by Best Reviews
+        </button>
+        <button className="sort-button worst-reviews" onClick={worstReviews}>
+          Sort by Worst Reviews
+        </button>
+      </div>
       <div className="Reviews-reviews">
         <Grid
           container

@@ -23,18 +23,20 @@ const RankTable = () => {
   }, [updateUI]);
 
   const columns = [
-    { field: 'id', headerName: 'Rank', width: 200 },
+    { field: 'ranks', headerName: 'Rank', width: 100 },
+    { field: 'id', headerName: 'Restaurant ID', width: 300 },
     { field: 'restaurantName', headerName: 'Restaurant name', width: 400 },
-    { field: 'rating', headerName: 'Rating', width: 200 },
-    { field: 'point', headerName: 'Point', width: 200 },
+    { field: 'rating', headerName: 'Average Rating', width: 200 },
+    { field: 'point', headerName: 'Total Points', width: 200 },
 
   ];
 
 
   const rows = []
+
   rankData.forEach((rank)=>{
-    console.log(rank);
     rows.push({
+      ranks: rankData.indexOf(rank)+1,
       id: rank._id,
       restaurantName: rank.name,
       rating: rank.ratings,

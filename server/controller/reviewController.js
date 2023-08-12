@@ -123,3 +123,37 @@ export const getReview = async(req, res) => {
         })
     }
 }
+
+// sort review based on highest ratings 
+export const getBestReviews = async(req, res) => {
+    try {
+        const restaurant = await Restaurant.findById(req.params.id);
+        const review = await Review.find({restaurant: req.params.id}).sort({ rating: -1 }).limit(10)
+        res.status(200).json({
+            success: true,
+            review
+        })
+    } catch (error) {
+        res.status(404).json({
+            success:false,
+            message:error
+        })
+    }
+}
+
+// sort review based on lowest ratings 
+export const getWorstReviews = async(req, res) => {
+    try {
+        const restaurant = await Restaurant.findById(req.params.id);
+        const review = await Review.find({restaurant: req.params.id}).sort({ rating: 1 }).limit(10)
+        res.status(200).json({
+            success: true,
+            review
+        })
+    } catch (error) {
+        res.status(404).json({
+            success:false,
+            message:error
+        })
+    }
+}
