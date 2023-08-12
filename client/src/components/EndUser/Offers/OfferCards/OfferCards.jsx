@@ -18,7 +18,7 @@ const OfferCards = ({ offer }) => {
       </div>
       <div className="card text-center shadow">
         <div className="overflow">
-          <img src={offer.image} alt="Offer" className="card-img-top" />
+          <img src={offer.logo} alt="Offer" className="card-img-top" />
         </div>
         <div className="card-body text-dark">
           <h4 className="card-title">{offer.name}</h4>
