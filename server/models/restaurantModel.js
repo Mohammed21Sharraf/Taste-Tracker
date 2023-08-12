@@ -27,6 +27,9 @@ const restaurantSchema = new mongoose.Schema({
   logo: {
     type: String,
   },
+  offer:{
+    type:String
+  },
   category: {
     type: String,
     required: [true, "Please enter restaurant category"],

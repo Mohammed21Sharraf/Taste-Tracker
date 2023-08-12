@@ -76,39 +76,39 @@ export const deleteMyReservation = async (req, res) => {
   });
 };
 
-// Get total reservation of each month - Restaurant Owner
-export const monthlyReservations = async (req, res) => {
-  const restaurantName = await Restaurant.find({ user: req.user._id }).select(
-    "name"
-  );
-  //{ $match : { author : "dave" } }
-  // console.log(restaurantName[0].name);
-  const group = await Reservation.aggregate([
-    {
-      $match: { restaurantName: restaurantName[0].name },
-    },
-    {
-      $group: {
-        _id: {
-          year: { $year: "$createdAt" },
-          month: { $month: "$createdAt" },
-        },
-        total: { $sum: 1 },
-      },
-    },
-    {
-      $sort: {
-        "_id.year": 1,
-        "_id.month": 1,
-      },
-    },
-  ]);
+// // Get total reservation of each month - Restaurant Owner
+// export const monthlyReservations = async (req, res) => {
+//   const restaurantName = await Restaurant.find({ user: req.user._id }).select(
+//     "name"
+//   );
+//   //{ $match : { author : "dave" } }
+//   // console.log(restaurantName[0].name);
+//   const group = await Reservation.aggregate([
+//     {
+//       $match: { restaurantName: restaurantName[0].name },
+//     },
+//     {
+//       $group: {
+//         _id: {
+//           year: { $year: "$createdAt" },
+//           month: { $month: "$createdAt" },
+//         },
+//         total: { $sum: 1 },
+//       },
+//     },
+//     {
+//       $sort: {
+//         "_id.year": 1,
+//         "_id.month": 1,
+//       },
+//     },
+//   ]);
 
-  res.status(200).json({
-    success: true,
-    group,
-  });
-};
+//   res.status(200).json({
+//     success: true,
+//     group,
+//   });
+// };
 
 // Get latest reservations - Restaurant Owner
 export const latestReservations = async (req, res) => {

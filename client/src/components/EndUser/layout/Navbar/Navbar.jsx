@@ -94,9 +94,8 @@ const Navbar = () => {
             </span>
           </div>
           <form
-            className={`search-bar-container ${
-              isNavbarOpaque ? "maroon-text" : ""
-            }`}
+            className={`search-bar-container ${isNavbarOpaque ? "maroon-text" : ""
+              }`}
             onSubmit={searchSubmitHandler}
           >
             <div className="search-bar">
@@ -130,16 +129,10 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="item">
-              <Link to="/reviews" className="item-link">
-                <span>Your Reviews</span>
-              </Link>
+              <button className="signout-button" onClick={handleSignOut}>
+                Sign Out
+              </button>
             </div>
-
-            <div className="item">
-            <button className="signout-button" onClick={handleSignOut}>
-            Sign Out
-          </button>
-        </div>
 
           </div>
         </nav>
