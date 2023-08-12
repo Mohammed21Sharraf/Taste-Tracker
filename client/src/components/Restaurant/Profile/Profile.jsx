@@ -13,25 +13,27 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from 'axios';
-import UpdateProfile   from './UpdateProfile';
-import {baseURL} from '../../../api.js';
-
-
+import UpdateProfile from './UpdateProfile';
+import { baseURL } from '../../../api.js';
 
 function Profile() {
   const [file, setFile] = useState("");
-  const [datas, setData] = useState([]);
+  const [datas, setData] = useState(null); 
   const [updateUI, setUpdateUI] = useState(false);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    axios.get(`${baseURL}/api/v1/restaurant/details`,{withCredentials:true})
-    .then((res)=> {
-      console.log(res.data);
-      setData(res.data);
-    });
+    axios.get(`${baseURL}/api/v1/restaurant/details`, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+        setData(res.data.details);
+      });
   }, [updateUI]);
 
+  if (datas === null) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="profile">
@@ -64,25 +66,39 @@ function Profile() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {datas.map((data) => (
-                  <TableRow key={data.id} setUpdateUI={setUpdateUI}>
-                    <TableCell className="tableCell">{data.username}</TableCell>
-                    <TableCell className="tableCell">{data.name}</TableCell>
-                    <TableCell className="tableCell">{data.description}</TableCell>
-                    <TableCell className="tableCell">{data.capacity}</TableCell>
-                    <TableCell className="tableCell">{data.averageOrderValue}</TableCell>
-                    <TableCell className="tableCell">{data.category}</TableCell>
+                {Array.isArray(datas) ? (
+                  datas.map((data) => (
+                    <TableRow key={data.id} setUpdateUI={setUpdateUI}>
+                      <TableCell className="tableCell">{data.username}</TableCell>
+                      <TableCell className="tableCell">{data.name}</TableCell>
+                      <TableCell className="tableCell">{data.description}</TableCell>
+                      <TableCell className="tableCell">{data.capacity}</TableCell>
+                      <TableCell className="tableCell">{data.averageOrderValue}</TableCell>
+                      <TableCell className="tableCell">{data.category}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={6}>No data available</TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
-            <button onClick={()=> setModal(true)}>Update Profile</button>
+            <button onClick={() => setModal(true)}>Update Profile</button>
             <UpdateProfile
-              modal={modal}
-              setModal={setModal}
-            />
+            modal={modal}
+            setModal={setModal}
+            restaurantId={datas[0]._id} // Make sure this is correct
+            onUpdate={(updatedData) => {
+              setData((prevData) => {
+                const newData = [...prevData];
+                newData[0] = { ...newData[0], ...updatedData };
+                return newData;
+              });
+              setModal(false);
+            }}
+          />
           </TableContainer>
-
         </div>
       </div>
     </div>

@@ -54,17 +54,17 @@ export const restaurantDetails = async (req, res) => {
 
 // Update Restaurant profile - Restaurant Owner
 export const restaurantUpdate = async (req, res) => {
-  const id = req.user._id;
   try {
-    const restaurant = await Restaurant.find({ user: id });
-    if (restaurant) {
-      const updateDetails = await Restaurant.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-      );
-      res.status(200).json(updateDetails);
-    }
+    const restaurantId = req.params.id;
+    const updatedDetails = req.body;
+
+    const updatedRestaurant = await Restaurant.findByIdAndUpdate(
+      restaurantId,
+      updatedDetails,
+      { new: true }
+    );
+
+    res.status(200).json(updatedRestaurant);
   } catch (error) {
     res.status(500).json(error);
   }
