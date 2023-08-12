@@ -2,6 +2,22 @@ import { Reservation } from "../models/reservationModel.js";
 import { Restaurant } from "../models/restaurantModel.js";
 import { sendEmail } from "../utils/sendEmail.js";
 
+let chart = [];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 // Create Reservation for a user
 export const createReservation = async (req, res) => {
   try {

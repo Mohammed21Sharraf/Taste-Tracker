@@ -53,7 +53,7 @@ const Home = () => {
 
               <div className="charts">
                 <Featured />
-                <Chart />
+                <Chart reservations={monthlyReservation} />
               </div>
 
               <div className="listContainer">
