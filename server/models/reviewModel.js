@@ -23,13 +23,13 @@ const reviewSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-//   img: {
-//     type: String,
-//   },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now(),
-//   }
+  //   img: {
+  //     type: String,
+  //   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 export const Review = mongoose.model("Review", reviewSchema);

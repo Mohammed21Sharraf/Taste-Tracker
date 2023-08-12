@@ -9,21 +9,32 @@ import TableHome from "./Table/TableHome.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getRestaurantDetails } from "../../../features/restaurant/restaurantSlice";
 import {
+  getDailyReservation,
   getLatestReservations,
   getMonthlyReservations,
 } from "../../../features/restaurant/reservationSlice";
+import { getDailyReviews } from "../../../features/restaurant/reviewSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { loading, restaurant } = useSelector((store) => store.restaurant);
-  const { resLoading, reservations, monthlyLoading, monthlyReservation } =
-    useSelector((state) => state.reservation);
+  const {
+    resLoading,
+    reservations,
+    monthlyLoading,
+    monthlyReservation,
+    dailyReservation,
+  } = useSelector((state) => state.reservation);
+  const { review } = useSelector((state) => state.review);
+
   let mainLoading = true;
 
   useEffect(() => {
     dispatch(getRestaurantDetails());
     dispatch(getLatestReservations());
     dispatch(getMonthlyReservations());
+    dispatch(getDailyReservation());
+    dispatch(getDailyReviews());
   }, [dispatch]);
 
   if (loading === false && resLoading === false && monthlyLoading === false) {
@@ -37,22 +48,29 @@ const Home = () => {
       ) : (
         <Fragment>
           <div className="home">
-            <Sidebar />
+            <Sidebar id={restaurant[0]._id} />
             <div className="homeContainer">
               <Navbar />
 
               <div className="widgets">
-                <Widget type="complain" />
-                <Widget type="review" resData={restaurant[0].numOfReviews} />
+                <Widget type="complain" id={restaurant[0]._id} />
+                <Widget
+                  type="review"
+                  resData={restaurant[0].numOfReviews}
+                  id={restaurant[0]._id}
+                />
                 <Widget
                   type="reservation"
                   resData={restaurant[0].numOfReservations}
                 />
-                <Widget type="ranking" />
+                <Widget type="ranking" id={restaurant[0]._id} />
               </div>
 
               <div className="charts">
-                <Featured />
+                <Featured
+                  dailyReservation={dailyReservation[0].count}
+                  dailyReviews={review[0].count}
+                />
                 <Chart reservations={monthlyReservation} />
               </div>
 
