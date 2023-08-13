@@ -64,11 +64,11 @@ const UserNavbar = () => {
             <span>Reservations</span>
           </Link>
         </div>
-        <div className="item">
+        {/* <div className="item">
           <Link to="/reviews" className="item-link">
             <span>Your Reviews</span>
           </Link>
-        </div>
+        </div> */}
 
         <div className="item">
           <button className="signout-button" onClick={handleSignOut}>
