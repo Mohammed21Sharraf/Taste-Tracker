@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./Home.scss";
 import Navbar from "../layout/Navbar/Navbar.jsx";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
@@ -6,71 +6,83 @@ import Widget from "./Widget/Widget.jsx";
 import Featured from "./Featured/Featured";
 import Chart from "./Chart/Chart.jsx";
 import TableHome from "./Table/TableHome.jsx";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestaurantDetails } from "../../../features/restaurant/restaurantSlice";
+import {
+  getDailyReservation,
+  getLatestReservations,
+  getMonthlyReservations,
+} from "../../../features/restaurant/reservationSlice";
+import { getDailyReviews } from "../../../features/restaurant/reviewSlice";
 
 const Home = () => {
-  const [restaurant, setRestaurant] = useState();
-  const [reservations, setReservations] = useState();
-  const [monthlyReservations, setMonthlyReservations] = useState();
+  const dispatch = useDispatch();
+  const { loading, restaurant } = useSelector((store) => store.restaurant);
+  const {
+    resLoading,
+    reservations,
+    monthlyLoading,
+    monthlyReservation,
+    dailyReservation,
+  } = useSelector((state) => state.reservation);
+  const { review } = useSelector((state) => state.review);
+
+  let mainLoading = true;
 
   useEffect(() => {
-    // Populating Widgets
-    axios
-      .get("http://localhost:4000/api/v1/restaurant/details", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setRestaurant(res.data.details);
-      });
+    dispatch(getRestaurantDetails());
+    dispatch(getLatestReservations());
+    dispatch(getMonthlyReservations());
+    dispatch(getDailyReservation());
+    dispatch(getDailyReviews());
+  }, [dispatch]);
 
-    // Populating TableHome
-    axios
-      .get("http://localhost:4000/api/v1/latestreservations", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setReservations(res.data.reservations);
-      });
-
-    // Populating Charts
-    axios
-      .get("http://localhost:4000/api/v1/monthlyreservations", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setMonthlyReservations(res.data.group);
-      });
-  }, []);
+  if (loading === false && resLoading === false && monthlyLoading === false) {
+    mainLoading = false;
+  }
 
   return (
-    <div className="home">
-      <Sidebar />
-      <div className="homeContainer">
-        <Navbar />
-        <div className="widgets">
-          <Widget type="complain" />
-          <Widget
-            type="review"
-            resData={restaurant && restaurant[0].numOfReviews}
-          />
-          <Widget
-            type="reservation"
-            resData={restaurant && restaurant[0].numOfReservations}
-          />
-          <Widget type="ranking" />
-        </div>
-        <div className="charts">
-          <Featured />
-          <Chart
-            monthlyReservations={monthlyReservations && monthlyReservations}
-          />
-        </div>
-        <div className="listContainer">
-          <div className="listTitle">Latest Reservations</div>
-          <TableHome reservations={reservations && reservations} />
-        </div>
-      </div>
-    </div>
+    <Fragment>
+      {mainLoading ? (
+        <div>Loading</div>
+      ) : (
+        <Fragment>
+          <div className="home">
+            <Sidebar id={restaurant[0]._id} />
+            <div className="homeContainer">
+              <Navbar />
+
+              <div className="widgets">
+                <Widget type="complain" id={restaurant[0]._id} />
+                <Widget
+                  type="review"
+                  resData={restaurant[0].numOfReviews}
+                  id={restaurant[0]._id}
+                />
+                <Widget
+                  type="reservation"
+                  resData={restaurant[0].numOfReservations}
+                />
+                <Widget type="ranking" id={restaurant[0]._id} />
+              </div>
+
+              <div className="charts">
+                <Featured
+                  dailyReservation={dailyReservation[0].count}
+                  dailyReviews={review[0].count}
+                />
+                <Chart reservations={monthlyReservation} />
+              </div>
+
+              <div className="listContainer">
+                <div className="listTitle">Latest Reservations</div>
+                <TableHome reservations={reservations} />
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      )}
+    </Fragment>
   );
 };
 

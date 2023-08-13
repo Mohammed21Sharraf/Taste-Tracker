@@ -6,11 +6,23 @@ import FullscreenExitRoundedIcon from "@mui/icons-material/FullscreenExitRounded
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import DP from "../../../../img/M1syl.jpeg";
-
+import { useDispatch } from "react-redux";
+import { loadUser } from "../../../../features/user/userSlice";
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    axios
+      .get("http://localhost:4000/api/v1/logout", { withCredentials: true })
+      .then(() => {
+        dispatch(loadUser());
+        navigate("/homepage");
+      });
+  };
 
   return (
     <div className="navbar">
@@ -32,8 +44,8 @@ const Navbar = () => {
             {/* Notifications */}
           </div>
           <div className="item">
-            <Link to="/">
-              <LogoutRoundedIcon />
+            <Link>
+              <LogoutRoundedIcon onClick={handleSignOut} />
             </Link>
           </div>
           <div className="item">

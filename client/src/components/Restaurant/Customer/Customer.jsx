@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../layout/Sidebar/Sidebar";
 import Navbar from "../layout/Navbar/Navbar.jsx";
 import "./Customer.scss";
-import Review from "./Review/Review";
+import ReviewTable from "./Review/ReviewTable";
 
 const Customer = () => {
   return (
@@ -10,7 +10,7 @@ const Customer = () => {
       <Sidebar/>
       <div className="homeContainer">
         <Navbar/>
-        <Review/>
+        <ReviewTable/>
       </div>
     </div>
   );

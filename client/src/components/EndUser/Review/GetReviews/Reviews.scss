@@ -1,108 +1,92 @@
-// Updated SCSS
+// Reviews.scss
 .Reviews-container {
   margin: 0 auto;
   padding: 2rem;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  
 
-  .Reviews-header {
-    text-align: center;
-    color: #4c0f1e;
+  .Reviews-content-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    padding-top: 7rem;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    
-  }
-  
-
-  .Reviews-info-container {
-    display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    width: 100%;
-    margin-bottom: 2rem;
-    text-align: left;
-    padding-left: 30rem;
-    
-  }
-
-  
-  .Reviews-category {
-    font-size: 2rem;
-    margin-bottom: 4rem;
-    text-align: left;
-    
-  }
-
-  .Reviews-category-title {
-    font-weight: bold;
-    color: #4c0f1e;
-    font-size: 1.7rem;
-    text-align: left;
-  }
-
-  .Reviews-image-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 300px;
+    justify-content: space-between;
+    background-color: #ccbbbb;
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 8rem;
-    margin-right: 18rem;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
     
 
-    img {
-      width: 100%;
-      height: 100%;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+    .Reviews-Restaurant-Name{
+      font-size: 3rem;
+      font-weight: bold;
+      color: #4c0f1e;
+      text-align: left ;
+    }
+
+    .Reviews-category-title {
+      color: #4c0f1e;
+      font-size: 1.6rem;
+      text-align: left;
+      font-weight: bold;
+  }
+
+    .Reviews-info-container {
+      margin-left: 30px;
+      
+    }
+
+    .Reviews-image-container {
+      position: relative;
+      width: 450px;
+      height: 450px;
       border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       object-fit: cover;
+      margin-right: 50px;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+      }
     }
   }
-
-  .Reviews-hr {
-    width: 50%;
-    text-align: left;
-    margin-left: 0;
-    background-color: #4c0f1e;
-    height: 1px;
-    margin: 2rem 0;
-    border: none;
-    display: none;
-  }
-
-  .Reviews-buttons {
+  .Reviews-buttons-outside-container {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between; 
     align-items: center;
-    width: 50%;
-    margin-bottom: 2rem;
-
+    margin-top: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+  
     .Reviews-submit,
-    .Reviews-reserve-seat {
+    .Reviews-reserve-seat,
+    .Reviews-complain {
+      flex: 1; 
+      margin: 0 1rem; 
       background-color: #fff;
       padding: 1.5rem;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       text-align: center;
-      flex: 1;
-
+  
       .Reviews-submit-text,
-      .Reviews-reserve-seat-text {
+      .Reviews-reserve-seat-text,
+      .Reviews-complain-text {
         color: #4c0f1e;
         font-size: 1.2rem;
         margin-bottom: 1rem;
       }
-
+  
       .Reviews-submit-button,
-      .Reviews-reserve-seat-button {
+      .Reviews-reserve-seat-button,
+      .Reviews-complain-button {
         background-color: #4c0f1e;
         color: #fff;
         border: none;
@@ -110,46 +94,38 @@
         font-size: 1rem;
         transition: background-color 0.3s, color 0.3s;
         border-radius: 0.2rem;
-
+  
         &:hover {
           background-color: #a7132b;
         }
       }
     }
-
-    .Reviews-reserve-seat {
-      margin-left: 1rem;
-    }
   }
+  
 
-  .Reviews-reviews {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .Reviews-reviews-title {
-    font-weight: bold;
-    color: #4c0f1e;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    text-align: center;
-  }
+  
 }
-
-// Adjusting the alignment of the buttons in mobile view
-@media (max-width: 768px) {
-  .Reviews-buttons {
-    flex-direction: column;
+.Reviews-reviews-title {
+  font-weight: bold;
+  color: #4c0f1e;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
+.Reviews-reviews {
+  display: flex;
+    justify-content: space-between; 
     align-items: center;
+    margin-top: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
 
-    .Reviews-submit,
-    .Reviews-reserve-seat {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-  }
+
+.review-card {
+  width: 300px; 
+  margin: 30px;
+  margin-bottom: 5px;
+}
 }

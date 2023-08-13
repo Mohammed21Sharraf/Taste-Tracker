@@ -76,6 +76,20 @@ body {
         }
       }
     }
+    .signout-button {
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: $white;
+      font-weight: bold;
+      font-size: 14px;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: rgba($white, 0.8);
+      }
+    }
   }
 
   &.opaque {

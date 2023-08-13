@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((store) => store.user);
+  const { isAuthenticated, user } = useSelector((store) => store.user);
 
   const [formData, setFormData] = useState({
     loginEmail: "",
@@ -42,15 +42,36 @@ const Login = () => {
     e.preventDefault();
     const loginData = { loginEmail, loginPassword };
     dispatch(login(loginData));
+
+    if (isAuthenticated && user.role === "restaurantOwner") {
+      navigate("/restaurant/dashboard");
+    }
   };
 
   useEffect(() => {
-    if (isAuthenticated && role === "restaurantOwner") {
-      navigate("/form");
-    } else if (isAuthenticated && role === "user") {
-      navigate("/userpage")
+    if (isAuthenticated) {
+      console.log(role, user.role);
+      if (
+        (role === "restaurantOwner" && user.role === "restaurantOwner") ||
+        user.role === "restaurantOwner"
+      ) {
+        console.log(role, user.role);
+        navigate("/form");
+      } else if (role === "user" || user.role === "user") {
+        console.log(role, user.role);
+        navigate("/userpage");
+      } else if (
+        role === "restaurantOwner" &&
+        user.role === "restaurantOwner"
+      ) {
+        console.log(role, user.role);
+        navigate("/form");
+      } else if (role === "restaurantOwner" && user.role === "user") {
+        console.log(role, user.role);
+        navigate("/userpage");
+      }
     }
-  }, [isAuthenticated, role, navigate]);
+  }, [isAuthenticated, role, navigate, user]);
 
   const handleSignUpClick = () => {
     const container = document.querySelector(".container");
@@ -61,6 +82,8 @@ const Login = () => {
     const container = document.querySelector(".container");
     container.classList.remove("sign-up-mode");
   };
+
+  console.log(userInfo);
 
   return (
     <div className="container">

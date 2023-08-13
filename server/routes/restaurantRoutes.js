@@ -1,17 +1,19 @@
-import express from "express";
+import express, { Router } from "express";
 import {
   createRestaurant,
   restaurantDetails,
-  restaurantReviews,
+  // restaurantReviews,
   restaurantUpdate,
-  createReview,
+  // createReview,
   getRestaurantDetails,
   getAllRestaurants,
   getTopRestaurant,
-  deleteReview,
+  // deleteReview,
   createComplain,
   restaurantComplaints,
-  deleteComplain,
+  // deleteComplain,
+  getRanksOfRestaurants,
+  getOffers,
 } from "../controller/restaurantController.js";
 import { isAuthenticatedUser } from "../middleware/auth.js";
 
@@ -28,17 +30,15 @@ router.route("/restaurant/:id").get(getRestaurantDetails);
 router.route("/restaurants").get(getAllRestaurants);
 router.route("/restaurants/top").get(getTopRestaurant);
 
-// Restaurant Reviews 
-router
-  .route("/restaurant/reviews/:id")
-  .get(isAuthenticatedUser, restaurantReviews);
-router.route("/restaurant/give_review/:id").put(isAuthenticatedUser, createReview);
-router.route("/restaurant/delete-review").delete(isAuthenticatedUser, deleteReview);
+// Offer Route 
+router.route("/restaurants/offers").get(isAuthenticatedUser, getOffers);
 
 // Restaurant complaints
 router.route("/restaurant/complain/:id").post(isAuthenticatedUser, createComplain);
 router.route("/restaurant/all-complains/:id").get(isAuthenticatedUser, restaurantComplaints);
-router.route("/restaurant/delete-complain").delete(isAuthenticatedUser, deleteComplain);
+// router.route("/restaurant/delete-complain").delete(isAuthenticatedUser, deleteComplain);
+
+router.route("/restaurants/rankings").get(isAuthenticatedUser, getRanksOfRestaurants);
 
 
 export default router;

@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 
 const TableHome = ({ reservations }) => {
   return (
-    <TableContainer component={Paper} className="table">
+    <TableContainer component={Paper} className="table tableContainer">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

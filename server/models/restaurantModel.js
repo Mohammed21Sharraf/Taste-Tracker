@@ -27,6 +27,9 @@ const restaurantSchema = new mongoose.Schema({
   logo: {
     type: String,
   },
+  offer:{
+    type:String
+  },
   category: {
     type: String,
     required: [true, "Please enter restaurant category"],
@@ -42,6 +45,10 @@ const restaurantSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+  },
+  points: {
+    type: Number,
+    default: 0,
   },
   ratings: {
     type: Number,

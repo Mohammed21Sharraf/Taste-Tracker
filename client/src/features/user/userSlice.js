@@ -95,6 +95,7 @@ const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(loadUser.rejected, (state) => {
+        state.isAuthenticated = false;
         state.user = null;
       });
   },

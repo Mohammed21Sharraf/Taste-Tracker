@@ -2,53 +2,33 @@ import React, { Fragment } from "react";
 import "./Datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 
-const Datatable = () => {
+const Datatable = ({ reservations, onUpdate }) => {
   let rows = [];
   let columns = [];
 
-  const options = [
-    {
-      userID: 1,
-      name: "Tahsin Ashrafee",
-      seatsBooked: 5,
-      totalRes: 2,
-      status: "Processing",
-    },
-    {
-      userID: 2,
-      name: "Tahsin Ashrafee",
-      seatsBooked: 5,
-      totalRes: 2,
-      status: "Approved",
-    },
-    {
-      userID: 3,
-      name: "Tahsin Ashrafee",
-      seatsBooked: 5,
-      totalRes: 2,
-      status: "Rejected",
-    },
-  ];
-
   columns = [
-    { field: "id", headerName: "User ID", width: 70 },
+    { field: "id", headerName: "Reservation ID", width: 250 },
 
     {
       field: "name",
       headerName: "User Name",
-      width: 250,
+      width: 200,
     },
     {
       field: "seatsBooked",
       headerName: "Seats Reserved",
       type: "number",
-      width: 230,
+      width: 150,
     },
 
     {
-      field: "totalRes",
-      headerName: "Total Reservations",
-      type: "number",
+      field: "time",
+      headerName: "Time",
+      width: 150,
+    },
+    {
+      field: "date",
+      headerName: "Date",
       width: 230,
     },
     {
@@ -72,8 +52,18 @@ const Datatable = () => {
           <div>
             {params.row.status === "Processing" ? (
               <div className="cellAction">
-                <div className="deleteButton">Reject</div>
-                <div className="approveButton">Approve</div>
+                <div
+                  className="deleteButton"
+                  onClick={() => onUpdate(params.row.id, "Rejected")}
+                >
+                  Reject
+                </div>
+                <div
+                  className="approveButton"
+                  onClick={() => onUpdate(params.row.id, "Approved")}
+                >
+                  Approve
+                </div>
               </div>
             ) : (
               <div className="cellAction">
@@ -88,13 +78,14 @@ const Datatable = () => {
     },
   ];
 
-  options.forEach((item) => {
+  reservations.forEach((reservation) => {
     rows.push({
-      id: item.userID,
-      seatsBooked: item.seatsBooked,
-      totalRes: item.totalRes,
-      name: item.name,
-      status: item.status,
+      id: reservation._id,
+      name: reservation.user.name,
+      seatsBooked: reservation.seatCapacity,
+      time: reservation.time,
+      date: reservation.date,
+      status: reservation.status,
     });
   });
 
