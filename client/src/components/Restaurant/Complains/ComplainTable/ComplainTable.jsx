@@ -25,16 +25,16 @@ const ComplainTable = () => {
                 // setUpdateUI((prevState)=>!prevState)
             });
     }, [updateUI, id]);
-
-    const deleteComplain = (ID)=> {
-        console.log(ID);
-        axios.delete(`${baseURL}/api/v1/restaurant/delete-complain/${id.id}`,{data: {complainID: ID}}, {
-            withCredentials: true,
-        })
-        .then((res) => {
-            console.log(res.data);
-        })
-    }
+    console.log(complaintsData)
+    // const deleteComplain = (ID)=> {
+    //     console.log(ID);
+    //     axios.delete(`${baseURL}/api/v1/restaurant/delete-complain/${id.id}`,{data: {complainID: ID}}, {
+    //         withCredentials: true,
+    //     })
+    //     .then((res) => {
+    //         console.log(res.data);
+    //     })
+    // }
 
     // console.log({ complaintsData });
 
@@ -42,18 +42,18 @@ const ComplainTable = () => {
         { field: 'id', headerName: 'Complain Id', width: 200 },
         { field: 'userName', headerName: 'Complainer name', width: 200 },
         { field: 'complaint', headerName: 'Complaint', width: 500 },
-        {
-            field: "action",
-            headerName: "Action",
-            width: 200,
-            renderCell: (params) => {
-                return (
-                    <div className='delete-icon'>
-                        <DeleteRoundedIcon onClick={deleteComplain(params.row.id)} />
-                    </div>
-                );
-            },
-        },
+        // {
+        //     field: "action",
+        //     headerName: "Action",
+        //     width: 200,
+        //     renderCell: (params) => {
+        //         return (
+        //             <div className='delete-icon'>
+        //                 <DeleteRoundedIcon onClick={deleteComplain(params.row.id)} />
+        //             </div>
+        //         );
+        //     },
+        // },
     ];
 
     const rows = []

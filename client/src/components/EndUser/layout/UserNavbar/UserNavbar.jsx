@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "./UserNavbar.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loadUser } from "../../../../features/user/userSlice";
+import axios from "axios";
 
 const UserNavbar = () => {
   const [keyword, setKeyword] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const searchSubmitHandler = (e) => {
@@ -16,7 +20,12 @@ const UserNavbar = () => {
   };
 
   const handleSignOut = () => {
-    //code likhoo
+    axios
+      .get("http://localhost:4000/api/v1/logout", { withCredentials: true })
+      .then(() => {
+        dispatch(loadUser());
+        navigate("/homepage");
+      });
   };
 
   return (
@@ -61,7 +70,6 @@ const UserNavbar = () => {
             Sign Out
           </button>
         </div>
-
       </div>
     </nav>
   );

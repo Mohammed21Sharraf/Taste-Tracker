@@ -143,14 +143,14 @@ export const createComplain = async (req, res) => {
       name: req.user.name,
       complains: complain,
     };
-
+    console.log(comp)
     const restaurant = await Restaurant.findById(id);
 
     restaurant.complaints.push(comp);
     restaurant.ratings -= 3;
 
     await restaurant.save({ validateBeforeSave: false });
-
+    console.log(restaurant)
     res.status(200).json({
       success: true,
       restaurant,

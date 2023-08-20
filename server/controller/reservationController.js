@@ -199,3 +199,38 @@ export const updateReservationStatus = async (req, res) => {
     message: "Email sent",
   });
 };
+
+// Get daily reservations
+export const dailyReservations = async (req, res) => {
+  try {
+    const restaurantName = await Restaurant.find({ user: req.user._id }).select(
+      "name"
+    );
+
+    const result = await Reservation.aggregate([
+      {
+        $match: { restaurantName: restaurantName[0].name },
+      },
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          day: "$_id",
+          count: 1,
+        },
+      },
+    ]).sort({ day: -1 });
+
+    res.status(200).json({ result });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error,
+    });
+  }
+};

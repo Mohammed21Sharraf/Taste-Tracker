@@ -42,6 +42,10 @@ const Login = () => {
     e.preventDefault();
     const loginData = { loginEmail, loginPassword };
     dispatch(login(loginData));
+
+    if (isAuthenticated && user.role === "restaurantOwner") {
+      navigate("/restaurant/dashboard");
+    }
   };
 
   useEffect(() => {

@@ -11,6 +11,8 @@ const Form = () => {
   const [logo, setLogo] = useState("");
   const [category, setCategory] = useState("");
   const [seatCapacity, setSeatCapacity] = useState(30);
+  const [Offers, setoffers] = useState("");
+  
 
   const { loading } = useSelector((store) => store.restaurant);
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ const Form = () => {
       averageOrderValue,
       category,
       seatCapacity,
+      Offers,
     };
     dispatch(createRestaurant(formData));
   };
@@ -42,6 +45,10 @@ const Form = () => {
       navigate("/restaurant/dashboard");
     }
   });
+
+  const handleClick = () => {
+    navigate("/restaurant/dashboard");
+  };
 
   return (
     <div className="page-container">
@@ -123,6 +130,7 @@ const Form = () => {
               <span className="file-name">{logo && logo.name}</span>
             </div>
           </div>
+
           <div className="form-field">
             <label htmlFor="category">Category</label>
             <input
@@ -133,8 +141,23 @@ const Form = () => {
               required
             />
           </div>
+
+          <div className="form-field">
+            <label htmlFor="Offers">Offers</label>
+            <input
+              type="text"
+              id="Offers"
+              value={Offers}
+              onChange={(e) => setoffers(e.target.value)}
+              required
+            />
+          </div>
+
           <input type="submit" value="Submit" className="submit-btn" />
         </form>
+        <button onClick={handleClick} className="submit-btn">
+            Go to Dashboard
+          </button>
       </div>
     </div>
   );

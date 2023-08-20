@@ -70,7 +70,7 @@ const Chart = ({ reservations }) => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="Reviews" stroke="#8884d8" />
+            {/* <Line type="monotone" dataKey="Reviews" stroke="#8884d8" /> */}
             <Line type="monotone" dataKey="Reservations" stroke="#82ca9d" />
           </LineChart>
         </ResponsiveContainer>

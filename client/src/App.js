@@ -14,7 +14,8 @@ import Review from "./components/EndUser/Review/Review";
 import Userpage from "./components/EndUser/Userpage/Userpage";
 import Wishlist from "./components/EndUser/Wishlist/Wishlist";
 import Reservations from "./components/EndUser/Reservations/Reservations";
-import Complains from "./components/Restaurant/Complains/Complains"
+// import UserReviews from "./components/EndUser/UserReviews/UserReviews";
+import Complains from "./components/Restaurant/Complains/Complains";
 import Offers from "./components/EndUser/Offers/Offers";
 
 function App() {
@@ -34,7 +35,6 @@ function App() {
           <Route exact path="/restaurant/dashboard" Component={Home} />
           <Route exact path="/restaurant/complains/:id" Component={Complains} />
           <Route exact path="/restaurant/reservation" Component={Reservation} />
-
           <Route exact path="/restaurant/customer/:id" Component={Customer} />
           <Route exact path="/restaurant/ranking" Component={Ranking} />
           <Route exact path="/restaurant/profile" Component={Profile} />

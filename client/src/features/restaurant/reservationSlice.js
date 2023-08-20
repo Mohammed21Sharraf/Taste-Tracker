@@ -33,11 +33,28 @@ export const getMonthlyReservations = createAsyncThunk(
   }
 );
 
+// Get daily Reservation
+export const getDailyReservation = createAsyncThunk(
+  "reservation/getDailyReservations",
+  async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:4000/api/v1//reservation/daily",
+        { withCredentials: true }
+      );
+      return await data.result;
+    } catch (error) {
+      throw new Error("Daily Reservations not loaded");
+    }
+  }
+);
+
 const initialState = {
   resLoading: true,
   reservations: {},
   monthlyReservation: {},
   monthlyLoading: true,
+  dailyReservation: {},
 };
 
 const reservationSlice = createSlice({
@@ -69,6 +86,16 @@ const reservationSlice = createSlice({
       })
       .addCase(getMonthlyReservations.rejected, (state) => {
         state.monthlyReservation = null;
+      })
+      // Get Daily Reservayion
+      .addCase(getDailyReservation.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getDailyReservation.fulfilled, (state, action) => {
+        state.dailyReservation = action.payload;
+      })
+      .addCase(getDailyReservation.rejected, (state) => {
+        state.dailyReservation = null;
       });
   },
 });

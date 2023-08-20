@@ -6,15 +6,17 @@ import StarIcon from "@mui/icons-material/Star";
 import { Link } from "react-router-dom";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 
-const Widget = ({ type, resData }) => {
+const Widget = ({ type, resData, id }) => {
   let data;
-
+  console.log(resData)
   switch (type) {
     case "complain":
       data = {
         title: "COMPLAINS",
         isMoney: false,
-        link: "View All Complains",
+        link: (
+          <Link to={`/restaurant/complains/${id}`}>View All reservation</Link>
+        ),
         icon: (
           <FeedbackIcon
             className="icon"
@@ -30,7 +32,9 @@ const Widget = ({ type, resData }) => {
       data = {
         title: "REVIEWS",
         isMoney: true,
-        link: "View All Reviews",
+        link: (
+          <Link to={`/restaurant/customer/${id}`}>View All reservation</Link>
+        ),
         counter: resData,
         icon: (
           <ReviewsIcon
@@ -46,7 +50,7 @@ const Widget = ({ type, resData }) => {
     case "reservation":
       data = {
         title: "RESERVATIONS",
-        link: "View All Reservations",
+        link: <Link to="/restaurant/reservation">View All reservation</Link>,
         counter: resData,
         icon: (
           <EventSeatIcon
@@ -58,8 +62,9 @@ const Widget = ({ type, resData }) => {
       break;
     case "ranking":
       data = {
-        title: "RANKING",
-        link: "View Restaurant Rankings",
+        title: "POINTS",
+        link: <Link to={`/restaurant/ranking`}>View All ranking</Link>,
+        counter: resData,
         icon: (
           <StarIcon
             className="icon"

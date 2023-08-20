@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createReservation,
+  dailyReservations,
   deleteMyReservation,
   getReservations,
   latestReservations,
@@ -30,5 +31,7 @@ router.route("/reservations/all").get(isAuthenticatedUser, getReservations);
 router
   .route("/reservations/update/:id")
   .put(isAuthenticatedUser, updateReservationStatus);
+
+router.route("/reservation/daily").get(isAuthenticatedUser, dailyReservations);
 
 export default router;
